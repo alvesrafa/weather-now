@@ -1,0 +1,16 @@
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form input {
+  height: 40px;
+  margin: 5px;
+  padding: 10px 5px;
+  width: 80%;
+  border: 0;
+}
+form button {
+  padding: 10px 5px;
+  border: 0;
+}
