@@ -2,7 +2,9 @@
   background: #FFF;
   width: 100%;
   padding: 30px 20px;
+  
   display: flex;
+  justify-content: space-around;
 }
 .card .local {
   color: #DDD;

@@ -1,7 +1,18 @@
 .box {
   padding: 5px 15px;
-  width: 20%;
-  margin: 5px;
   background-color: #FFF;
+  width: 23%;
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
+.box .Dia {
+  display: none;
+}
+.box .Noite {
+  display: none;
+}

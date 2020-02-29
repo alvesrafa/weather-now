@@ -26,7 +26,6 @@ function App() {
       const response = await api.get(`/forecasts/v1/daily/5day/${key}`, config)
       setForecasts(response.data.DailyForecasts)
       setHeadline(response.data.headline)
-      console.log(response.data)
     }
     searchData()
   }, [key])
@@ -51,31 +50,22 @@ function App() {
 
   }
 
-
-
   return (
     <div className="App">
-      
       <form onSubmit={cityKey}>
-
         <input type="text" value={address} onChange={e => setAddress(e.target.value)}/>
-        
         <button type="submit">Buscar</button>
-
       </form>
 
       <div className="forecasts">
         {forecasts ? forecasts.map((dia, id) => {
           if(id !== 0) return <TempDay key={id} dia={dia}/>
-          else return <TempToday key={id} dia={dia}/>
+          else return <TempToday key={id} dia={dia} head={headline}/>
         })
         :
         <div>Não tem</div>
         }
       </div>
-      
-      
-
     </div>
   );
 }
