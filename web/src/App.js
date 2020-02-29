@@ -8,13 +8,13 @@ import TempToday from './components/TempToday';
 
 function App() {
   const [address, setAddress] = useState('');
-  const [key, setKey] = useState('');
   const [forecasts, setForecasts] = useState('');
   const [headline, setHeadline] = useState('');
+  const [city, setCity] = useState('');
 
   useEffect(()=> {
     async function searchData(){
-      if(!key) return ;
+      if(!city.Key) return ;
 
       let config = {
         params: {
@@ -23,12 +23,13 @@ function App() {
         } 
       };
       
-      const response = await api.get(`/forecasts/v1/daily/5day/${key}`, config)
+      const response = await api.get(`/forecasts/v1/daily/5day/${city.Key}`, config)
       setForecasts(response.data.DailyForecasts)
-      setHeadline(response.data.headline)
+      setHeadline(response.data.Headline)
+      console.log(response.data)
     }
     searchData()
-  }, [key])
+  }, [city])
 
   async function cityKey(e){
     e.preventDefault();
@@ -41,12 +42,15 @@ function App() {
         language: 'pt-BR',
       } 
     };
-    const response = await api.get('/locations/v1/cities/search', config )
+    await api.get('/locations/v1/cities/search', config )
+      .then( response => {
+        setCity(response.data[0])
+      })
+      .catch( e => {
+        console.log(e)
+      })
 
-    if(response.data[0])
-      setKey(response.data[0].Key)
-    else
-      console.log('error')
+
 
   }
 
@@ -60,7 +64,7 @@ function App() {
       <div className="forecasts">
         {forecasts ? forecasts.map((dia, id) => {
           if(id !== 0) return <TempDay key={id} dia={dia}/>
-          else return <TempToday key={id} dia={dia} head={headline}/>
+          else return <TempToday key={id} dia={dia} head={headline} city={city}/>
         })
         :
         <div>Não tem</div>
