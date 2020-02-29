@@ -2,12 +2,15 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import api from './services/api';
 import { KEY } from './env.json';
-import Local from './components/Local';
+import TempDay from './components/TempDay';
+import TempToday from './components/TempToday';
+
+
 function App() {
   const [address, setAddress] = useState('');
   const [key, setKey] = useState('');
-  const [city, setCity] = useState('');
   const [forecasts, setForecasts] = useState('');
+  const [headline, setHeadline] = useState('');
 
   useEffect(()=> {
     async function searchData(){
@@ -22,6 +25,7 @@ function App() {
       
       const response = await api.get(`/forecasts/v1/daily/5day/${key}`, config)
       setForecasts(response.data.DailyForecasts)
+      setHeadline(response.data.headline)
       console.log(response.data)
     }
     searchData()
@@ -29,7 +33,7 @@ function App() {
 
   async function cityKey(e){
     e.preventDefault();
-    if(address == '') return ;
+    if(address === '') return ;
 
     let config = {
       params: {
@@ -46,7 +50,7 @@ function App() {
       console.log('error')
 
   }
-  
+
 
 
   return (
@@ -59,39 +63,17 @@ function App() {
         <button type="submit">Buscar</button>
 
       </form>
+
+      <div className="forecasts">
+        {forecasts ? forecasts.map((dia, id) => {
+          if(id !== 0) return <TempDay key={id} dia={dia}/>
+          else return <TempToday key={id} dia={dia}/>
+        })
+        :
+        <div>Não tem</div>
+        }
+      </div>
       
-      {forecasts ? forecasts.map((dia, id) => (
-        <div key={id} className="card">
-          <div className="data">{dia.Date}</div>
-          <div className="temperatura">
-            <div className="max">
-               maxima de {dia.Temperature.Maximum.Value}
-                <span className="celsius">º{dia.Temperature.Maximum.Unit}</span>
-            </div>
-            <div className="min">
-                minima de {dia.Temperature.Minimum.Value}
-                <span className="celsius">º{dia.Temperature.Minimum.Unit}</span>
-            </div>
-          </div>
-          <div className="Dia">
-            <div>chove?{dia.Day.HasPrecipitation}</div>
-            <img src={`https://developer.accuweather.com/sites/default/files/${("0"+dia.Day.Icon).slice(-2)}-s.png`} alt=""/>
-            <div>Frase: {dia.Day.IconPhrase}</div>
-            <div>itensidade: {dia.Day.PrecipitationIntensity}</div>
-            <div>tipo: {dia.Day.PrecipitationType}</div>
-          </div>
-          <div className="Noite">
-            <div>{dia.Day.HasPrecipitation}</div>
-            <img src={`https://developer.accuweather.com/sites/default/files/${("0"+dia.Day.Icon).slice(-2)}-s.png`} alt=""/>
-            <div>{dia.Day.IconPhrase}</div>
-            <div>{dia.Day.PrecipitationIntensity}</div>
-            <div>{dia.Day.PrecipitationType}</div>
-          </div>
-        </div>
-      ))
-    :
-     <div>Não tem</div>
-     }
       
 
     </div>
