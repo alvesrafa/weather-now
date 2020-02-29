@@ -23,10 +23,15 @@ function App() {
         } 
       };
       
-      const response = await api.get(`/forecasts/v1/daily/5day/${city.Key}`, config)
-      setForecasts(response.data.DailyForecasts)
-      setHeadline(response.data.Headline)
-      console.log(response.data)
+      await api.get(`/forecasts/v1/daily/5day/${city.Key}`, config)
+        .then( response => {
+          setForecasts(response.data.DailyForecasts)
+          setHeadline(response.data.Headline)
+          console.log(response.data)
+        })
+        .catch( e => {
+          console.log(e)
+        })
     }
     searchData()
   }, [city])
