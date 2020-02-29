@@ -2,12 +2,13 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 15px;
 }
 form input {
   height: 40px;
   margin: 5px;
   padding: 10px 5px;
-  width: 80%;
+  width: 50%;
   border: 0;
 }
 form button {

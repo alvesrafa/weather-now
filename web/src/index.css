@@ -4,9 +4,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 body {
   background-color: #7f8c8d;
-  padding: 50px 70px;
+  padding: 50px 100px;
 }
