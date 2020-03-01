@@ -13,7 +13,7 @@ function App() {
   const [city, setCity] = useState('');
   const [conditions, setConditions] = useState('');
 
-  useEffect(async()=> {
+  useEffect(()=> {
     async function searchData(){
       if(!city.Key) return ;
 
@@ -24,7 +24,7 @@ function App() {
         } 
       };
       
-      await api.get(`/forecasts/v1/daily/5day/${city.Key}`, config)
+     await api.get(`/forecasts/v1/daily/5day/${city.Key}`, config)
         .then( response => {
           setForecasts(response.data.DailyForecasts)
           setHeadline(response.data.Headline)
