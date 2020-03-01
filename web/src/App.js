@@ -11,8 +11,9 @@ function App() {
   const [forecasts, setForecasts] = useState('');
   const [headline, setHeadline] = useState('');
   const [city, setCity] = useState('');
+  const [conditions, setConditions] = useState('');
 
-  useEffect(()=> {
+  useEffect(async()=> {
     async function searchData(){
       if(!city.Key) return ;
 
@@ -32,6 +33,14 @@ function App() {
         .catch( e => {
           console.log(e)
         })
+
+      await api.get(`/currentconditions/v1/${city.Key}`, config).then( response => {
+        console.log(response.data[0])
+        setConditions(response.data[0])
+      }).catch( err => {
+        console.log(err)
+      })
+
     }
     searchData()
   }, [city])
@@ -67,9 +76,10 @@ function App() {
       </form>
 
       <div className="forecasts">
-        {forecasts ? forecasts.map((dia, id) => {
+        {
+        (forecasts && conditions) ? forecasts.map((dia, id) => {
           if(id !== 0) return <TempDay key={id} dia={dia}/>
-          else return <TempToday key={id} dia={dia} head={headline} city={city}/>
+          else return <TempToday key={id} dia={dia} head={headline} city={city} condition={conditions}/>
         })
         :
         <div>Não tem</div>

@@ -1,16 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { FtoC, dataPadrao } from '../../assets/functions';
 import './today.css';
+import {DiaNoite} from '../../assets/styles'
 
-
-export default function TempToday({dia, head, city}) {
+export default function TempToday({dia, head, city, condition}) {
+  useEffect(() => {
+    
+  }, [])
   return (
     <div className="card">
-      <div className="principal">
+      <DiaNoite className="principal">
 
         <div className="local">{city.LocalizedName}, {city.AdministrativeArea.LocalizedName}</div>
         <div className="data">{dataPadrao(dia.Date)}</div>
         <div className="temperatura">
+          <div className="temp">
+          {parseInt(condition.Temperature.Metric.Value)} <span className="celsius">ºC</span>
+          </div>''
           <div className="max">
               Max {FtoC(dia.Temperature.Maximum.Value)}
               <span className="celsius">ºC</span>
@@ -21,7 +27,7 @@ export default function TempToday({dia, head, city}) {
           </div>
         </div>
         <p className="descricao">{head.Text}</p>
-      </div>
+      </DiaNoite>
       <div className="detalhes">
         <div className="dia">
           <div>Durante o dia: {dia.Day.IconPhrase}</div>
@@ -73,3 +79,4 @@ export default function TempToday({dia, head, city}) {
     </div>
   )
 }
+
