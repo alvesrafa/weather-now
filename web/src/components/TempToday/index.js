@@ -1,14 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import { FtoC, dataPadrao } from '../../assets/functions';
 import './today.css';
 import {DiaNoite} from '../../assets/styles'
+import Lottie from 'react-lottie';
+
+import dayNight from '../../assets/moon.json';
+import daySun from '../../assets/sun.json';
 
 export default function TempToday({dia, head, city, condition}) {
-
+  
   return (
     <div className="card">
-      <DiaNoite time={condition.IsDayTime ? 'yellow' : 'blue'} className="principal">
-
+      <DiaNoite time={condition.IsDayTime ? '#5AD5FC' : '#0B1B25'} className="principal">
+        
         <div className="local">{city.LocalizedName}, {city.AdministrativeArea.LocalizedName}</div>
         <div className="data">{dataPadrao(dia.Date)}</div>
         <div className="temperatura">

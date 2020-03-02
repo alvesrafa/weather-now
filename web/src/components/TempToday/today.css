@@ -6,6 +6,10 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+  transition: 0.4s ease-out;
+  overflow: hidden;
 }
 /* .card .principal {
   
@@ -13,19 +17,19 @@
 
 
 .principal .local {
-  color: #333;
+  color: #ddd;
   font-size: 26px;
   font-weight: bold;
 }
 .principal .data {
-  color:  #333;
+  color:  #ddd;
 }
 .principal .temperatura {
   padding: 2px 5px;
   display: flex;
   align-items: flex-start;
   
-  color: #3d3d3d;
+  color: #ddd;
   justify-content: space-around;
   align-items: center;
 }

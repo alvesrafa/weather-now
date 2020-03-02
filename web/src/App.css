@@ -3,22 +3,31 @@ form {
   justify-content: center;
   align-items: center;
   margin: 15px;
+  width: 100%;
 }
 form input {
   height: 40px;
-  margin: 5px;
   padding: 10px 5px;
-  width: 50%;
+  width: 59%;
+  margin-right: 2%;
   border: 0;
 }
 form button {
   padding: 10px 5px;
   border: 0;
+  width: 9%;
 }
 .forecasts {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
+  width: 70%;
+  border-radius: 50;
   
+}
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

@@ -11,6 +11,7 @@
     "react-dom": "^16.8.6",
     "react-google-places-autocomplete": "^1.6.2",
     "react-is": "^16.8.6",
+    "react-lottie": "^1.2.3",
     "react-places-autocomplete": "^7.2.1",
     "react-scripts": "3.4.0",
     "styled-components": "^5.0.0"
