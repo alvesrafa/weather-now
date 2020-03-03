@@ -10,12 +10,12 @@ export default function TempDay({dia}) {
       <div className="data">{dataPadrao(dia.Date)}</div>
 
       <div className="temperatura">
-        <div className="maximo">
+        <div className="max">
             Máxima de {FtoC(dia.Temperature.Maximum.Value)}
             <span className="celsius">ºC</span>
 
         </div>
-        <div className="minimo">
+        <div className="min">
             Mínima de {FtoC(dia.Temperature.Minimum.Value)}
             <span className="celsius">ºC</span>
         </div>
