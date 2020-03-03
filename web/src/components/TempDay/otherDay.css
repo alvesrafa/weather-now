@@ -3,16 +3,48 @@
   background-color: #FFF;
   width: 23%;
   margin-top: 10px;
+  text-align: center;
+  background: #ecf0f1;
 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
 
+  border-radius: 10px;
+  box-shadow: 0 5px 7px #000;
+  transition: 0.4s ease-out;
+}
+.box .data {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+.box .temperatura {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.maximo{
+  font-size: 15px;
+  color: '#B71C1C';
+}
+.minimo{
+  font-size: 14px;
+  color: '#F44336';
+}
 .box .Dia {
   display: none;
 }
 .box .Noite {
   display: none;
+}
+.box:hover {
+  transition: all;
+}
+.box .Dia:hover {
+  display: none;
+}
+.box .Noite:hover {
+  display: inline-block;
 }

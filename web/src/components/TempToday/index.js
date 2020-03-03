@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FtoC, dataPadrao } from '../../assets/functions';
 import './today.css';
 import {DiaNoite} from '../../assets/styles'
-import Lottie from 'react-lottie';
-
-import dayNight from '../../assets/moon.json';
-import daySun from '../../assets/sun.json';
 
 export default function TempToday({dia, head, city, condition}) {
   
@@ -20,15 +16,15 @@ export default function TempToday({dia, head, city, condition}) {
           {parseInt(condition.Temperature.Metric.Value)} <span className="celsius">ºC</span>
           </div>
           <div className="max">
-              Max {FtoC(dia.Temperature.Maximum.Value)}
+              Máx {FtoC(dia.Temperature.Maximum.Value)}
               <span className="celsius">ºC</span>
           </div>
           <div className="min">
-              Min {FtoC(dia.Temperature.Minimum.Value)}
+              Mín {FtoC(dia.Temperature.Minimum.Value)}
               <span className="celsius">ºC</span>
           </div>
         </div>
-        <p className="descricao">{head.Text}</p>
+        <p className="descricao">{condition.WeatherText}</p>
       </DiaNoite>
       <div className="detalhes">
         <div className="dia">
