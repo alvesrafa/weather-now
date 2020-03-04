@@ -10,12 +10,33 @@ form input {
   padding: 10px 5px;
   width: 59%;
   margin-right: 2%;
+
   border: 0;
+  border-radius: 3px;
+  box-shadow: -2px 0 1px #111;
+  transition: 0.4s ease-in-out;
 }
 form button {
-  padding: 10px 5px;
-  border: 0;
+  height: 40px;
+  padding: 10px 3px;
   width: 9%;
+  display: inline-block;
+
+  border: 0;
+  color: #FFF;
+  font-weight: bold;
+  background: #49ABCC;
+  border-bottom: 2px solid #2CABCF;
+  border-radius: 3px;
+  transition: all 100ms;
+  box-shadow: 1px 2px 2px #000;
+  transition: 0.4s ease-in-out;
+}
+form button:hover {
+  background: #2E6ACC;
+  border-bottom: 2px solid #2B6ACB;
+  box-shadow: -2px 0 3px #111;
+  
 }
 .forecasts {
   display: flex;

@@ -78,7 +78,7 @@ function App() {
       <div className="forecasts">
         {
         (forecasts && conditions) ? forecasts.map((dia, id) => {
-          if(id !== 0) return <TempDay key={id} dia={dia}/>
+          if(id !== 0) return <TempDay key={id} dia={dia} head={headline}/>
           else return <TempToday key={id} dia={dia} head={headline} city={city} condition={conditions}/>
         })
         :

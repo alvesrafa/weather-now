@@ -40,7 +40,7 @@ export default function TempToday({dia, head, city, condition}) {
               (dia.Day.PrecipitationIntensity ==='Heavy') ? ' Pesada' : ' --'
             }
           </div>
-          <div>tipo: 
+          <div>Tipo: 
             {
               (dia.Day.PrecipitationType === 'Rain') ? ' Chuva' :
               (dia.Day.PrecipitationType === 'Snow') ? ' Neve' :
@@ -62,7 +62,7 @@ export default function TempToday({dia, head, city, condition}) {
               (dia.Day.PrecipitationIntensity ==='Heavy') ? ' Pesada' : ' --'
             }
           </div>
-          <div>tipo: 
+          <div>Tipo: 
             {
               (dia.Day.PrecipitationType === 'Rain') ? ' Chuva' :
               (dia.Day.PrecipitationType === 'Snow') ? ' Neve' :
