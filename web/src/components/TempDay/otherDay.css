@@ -31,23 +31,13 @@
 }
 .box .temperatura .min{
   font-size: 14px;
-  color: #F44336;
+  color: #536DFE;
 }
-.box .Dia {
-  display: none;
-}
-.box .Noite {
-  display: none;
-}
+
 .box:hover {
-  transition: all;
+  cursor: pointer;
 }
-.box .Dia:hover {
-  display: none;
-}
-.box .Noite:hover {
-  display: inline-block;
-}
+
 @media only screen and (max-width: 600px) {
   .box {
     width: 100%;
