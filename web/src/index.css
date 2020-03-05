@@ -9,13 +9,13 @@
 
 body {
   background-color: #2E6C80;
-  padding: 50px 100px;
-  
+  padding: 30px 100px;
+  height: 100vh;
 }
 
 @media only screen and (max-width: 850px) {
   body {
-    padding: 25px 50px;
+    padding: 20px 50px;
   }
 }
 @media only screen and (max-width: 470px) {

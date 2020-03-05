@@ -7,7 +7,7 @@ export const DiaNoite = styled.div`
   background-image: url(${props => (props.time === '#5AD5FC') ? deDia : deNoite});
   color: ${props => (props.time === '#5AD5FC') ? '#222222' : '#ddd'};
   background-repeat: no-repeat;
-  background-size: 200px;
+  background-size: 250px;
   background-position: center;
   width: 100%; 
   padding: 15px 5px;

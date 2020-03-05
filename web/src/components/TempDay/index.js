@@ -12,7 +12,7 @@ export default function TempDay({dia, head}) {;
     <>
     <Modal className="modal" show={show} onHide={handleClose}>
       <Modal.Header className="modal-header" closeButton>
-        <Modal.Title>{dataPadrao(dia.Date)}</Modal.Title>
+        <Modal.Title className="data">{dataPadrao(dia.Date)}</Modal.Title>
         <div className="modal-temperatura">
             <div className="max">
                 ↑{FtoC(dia.Temperature.Maximum.Value)}

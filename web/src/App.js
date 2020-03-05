@@ -82,6 +82,7 @@ function App() {
       {
       loading ?
       <Lottie
+      style={{flex:1}}
           options={{
             loop: true,
             autoplay: true, 
@@ -90,8 +91,8 @@ function App() {
               preserveAspectRatio: 'xMidYMid slice'
             }
           }}
-          height={400}
-          width={400}
+          height={200}
+          width={200}
         />
       :
       <div className="forecasts">
