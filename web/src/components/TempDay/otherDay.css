@@ -90,6 +90,9 @@
   color: #DDD;
   transition: 0.4s ease-out;
 }
+.box:hover {
+  transform: scale(1.1);
+}
 @media only screen and (max-width: 575px) {
   .box {
     width: 100%;

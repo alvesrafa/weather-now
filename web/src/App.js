@@ -4,7 +4,8 @@ import api from './services/api';
 import { KEY } from './env.json';
 import TempDay from './components/TempDay';
 import TempToday from './components/TempToday';
-
+import animationData from './assets/loading.json';
+import Lottie from 'react-lottie';
 
 function App() {
   const [address, setAddress] = useState('');
@@ -12,6 +13,7 @@ function App() {
   const [headline, setHeadline] = useState('');
   const [city, setCity] = useState('');
   const [conditions, setConditions] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(()=> {
     async function searchData(){
@@ -40,13 +42,15 @@ function App() {
       }).catch( err => {
         console.log(err)
       })
-
+      
     }
     searchData()
+    setLoading(false)
   }, [city])
 
   async function cityKey(e){
     e.preventDefault();
+    setLoading(true)
     if(address === '') return ;
 
     let config = {
@@ -75,6 +79,21 @@ function App() {
         <button type="submit">Buscar</button>
       </form>
 
+      {
+      loading ?
+      <Lottie
+          options={{
+            loop: true,
+            autoplay: true, 
+            animationData,
+            rendererSettings: {
+              preserveAspectRatio: 'xMidYMid slice'
+            }
+          }}
+          height={400}
+          width={400}
+        />
+      :
       <div className="forecasts">
         {
         (forecasts && conditions) ? forecasts.map((dia, id) => {
@@ -85,6 +104,7 @@ function App() {
         <div>Não tem</div>
         }
       </div>
+      }
     </div>
   );
 }

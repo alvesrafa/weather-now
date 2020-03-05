@@ -7,12 +7,9 @@ export default function TempDay({dia, head}) {;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-
-
+  
   return (
     <>
-    
     <Modal className="modal" show={show} onHide={handleClose}>
       <Modal.Header className="modal-header" closeButton>
         <Modal.Title>{dataPadrao(dia.Date)}</Modal.Title>
