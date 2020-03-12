@@ -2,8 +2,11 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import api from './services/api';
 import { KEY } from './env.json';
+
 import TempDay from './components/TempDay';
 import TempToday from './components/TempToday';
+import SearchInput from './components/searchInput'
+
 import animationData from './assets/loading.json';
 import Lottie from 'react-lottie';
 
@@ -74,10 +77,7 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={cityKey}>
-        <input type="text" value={address} onChange={e => setAddress(e.target.value)}/>
-        <button type="submit">Buscar</button>
-      </form>
+      <SearchInput cityKey={cityKey} address={address} setAddress={setAddress} />
 
       {
       loading ?
