@@ -16,10 +16,11 @@ function App() {
   const [headline, setHeadline] = useState('');
   const [city, setCity] = useState('');
   const [conditions, setConditions] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(()=> {
+  
     async function searchData(){
+      console.log('data')
       if(!city.Key) return ;
 
       let config = {
@@ -46,13 +47,13 @@ function App() {
         console.log(err)
       })
       
+      setLoading(false);
     }
-    searchData()
-    setLoading(false)
-  }, [city])
+    
+  
 
-  async function cityKey(e){
-    e.preventDefault();
+  async function cityKey(){
+    console.log('cityKey')
     setLoading(true)
     if(address === '') return ;
 
@@ -71,8 +72,7 @@ function App() {
         console.log(e)
       })
 
-
-
+      searchData();
   }
 
   return (
@@ -97,12 +97,11 @@ function App() {
       :
       <div className="forecasts">
         {
-        (forecasts && conditions) ? forecasts.map((dia, id) => {
+        (forecasts && conditions) && forecasts.map((dia, id) => {
           if(id !== 0) return <TempDay key={id} dia={dia} head={headline}/>
           else return <TempToday key={id} dia={dia} head={headline} city={city} condition={conditions}/>
         })
-        :
-        <div>Não tem</div>
+        
         }
       </div>
       }
