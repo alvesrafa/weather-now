@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../services/api'
+import api from '../../services/google_api';
 import { GOOGLE_KEY } from '../../env.json';
 
 export default function SearchInput({cityKey, address, setAddress}){
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const {latitude, longitude} = position.coords;
-        console.log(latitude, longitude)
-        setLatitude(latitude)
-        setLongitude(longitude)
+        const { latitude, longitude } = position.coords;
+        console.log(GOOGLE_KEY,latitude+','+longitude)
+        locationByCord(latitude, longitude)
+
+        if(address) cityKey()
       },
       (err) => {
           console.log(err)
@@ -22,19 +21,36 @@ export default function SearchInput({cityKey, address, setAddress}){
         }
       
     );
+    
   }, [])
-  
-  function getGeoLocation() {
+
+  async function locationByCord(lat, long){
     let config = {
-      params: {
+        params: {
+          key: GOOGLE_KEY,
+          latlng: lat+','+long,
+        } 
+      
+    }
+    await api.get('maps/api/geocode/json', config)
+    .then( response => {
+      setAddress(response.data.results[0].formatted_address)
+      
+    })
+    .catch( e => {
+      console.log(e)
+    })
+  }
+  async function locationByAddress() {
+    let config = {
         params: {
           key: GOOGLE_KEY,
           address: '',
         } 
-      }
+      
     }
-    const response = api.get('https://maps.googleapis.com/maps/api/geocode/json', config);
-    
+    const response = await api.get('https://maps.googleapis.com/maps/api/geocode/json', config);
+
     console.log(response.data)
     
   }
