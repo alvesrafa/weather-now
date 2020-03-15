@@ -1,25 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../../services/google_api';
 import { GOOGLE_KEY } from '../../env.json';
 
-export default function SearchInput({cityKey, address, setAddress}){
+export default function SearchInput({cityKey}){
+  const [address, setAddress] = useState('');
+
   useEffect(() => {
-    async function locationByCord(lat, long){
-      let config = {
-          params: {
-            key: GOOGLE_KEY,
-            latlng: lat+','+long,
-          } 
-      }
-  
-      await api.get('maps/api/geocode/json', config)
-      .then( response => {
-        setAddress(response.data.results[0].formatted_address)
-      })
-      .catch( e => {
-        console.log(e)
-      })
-    }
+    
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
@@ -33,8 +20,26 @@ export default function SearchInput({cityKey, address, setAddress}){
           timeout:30000
         }
     );
-    setTimeout(()=> console.log('arrumarqui'), 3000)
-  }, [setAddress])
+
+    async function locationByCord(lat, long){
+      let config = {
+          params: {
+            key: GOOGLE_KEY,
+            latlng: lat+','+long,
+          } 
+      }
+  
+      await api.get('maps/api/geocode/json', config)
+      .then( response => {
+        setAddress(response.data.results[0].formatted_address)
+        setTimeout(()=> cityKey(response.data.results[0].formatted_address), 2500) //verificar se não é possivel colocar 'address' aqui
+      })
+      .catch( e => {
+        console.log(e)
+      })
+    }
+    
+  }, [])
 
   
   
@@ -42,7 +47,7 @@ export default function SearchInput({cityKey, address, setAddress}){
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <input type="text" value={address} onChange={e => setAddress(e.target.value)}/>
-      <button onClick={cityKey}> Buscar</button>
+      <button onClick={() => cityKey(address)}> Buscar</button>
     </form>
   )
 }

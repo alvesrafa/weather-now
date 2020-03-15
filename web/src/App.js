@@ -13,16 +13,16 @@ import Lottie from 'react-lottie';
 function App() {
   const [loading, setLoading] = useState(false);
 
-  const [address, setAddress] = useState('');
+ 
   const [city, setCity] = useState('');
 
   const [conditions, setConditions] = useState('');
   const [forecasts, setForecasts] = useState('');
   const [headline, setHeadline] = useState('');
 
-  async function cityKey(){
+  async function cityKey(address){
     setLoading(true)
-    if(address === '') return console.log('addresvazio');
+    
     let config = {
       params: {
         apikey: KEY,
@@ -37,19 +37,20 @@ function App() {
       } 
     }
     await api.get('/locations/v1/cities/search', config).then( response => {
-      let cidade = response.data[0];
-      api.get(`/forecasts/v1/daily/5day/${cidade.Key}`, newConfig).then( response => {
+      setCity(response.data[0])
+      api.get(`/forecasts/v1/daily/5day/${response.data[0].Key}`, newConfig).then( response => {
         setForecasts(response.data.DailyForecasts)
         setHeadline(response.data.Headline)
         console.log(response.data)
       })
-      api.get(`/currentconditions/v1/${cidade.Key}`, newConfig).then( response => {
+      api.get(`/currentconditions/v1/${response.data[0].Key}`, newConfig).then( response => {
         console.log(response.data[0])
         setConditions(response.data[0])
       })
-    })
+    }).catch(e => console.log(e))
     
-
+    // if(!city.Key) return console.log('cityvazio');
+    // outras requisições aqui
     
     
     setLoading(false);
@@ -57,7 +58,7 @@ function App() {
 
   return (
     <div className="App">
-      <SearchInput cityKey={cityKey} address={address} setAddress={setAddress} />
+      <SearchInput cityKey={cityKey}/>
 
       {
       loading ?
@@ -77,10 +78,11 @@ function App() {
       :
       <div className="forecasts">
         {
-        (forecasts && conditions) && forecasts.map((dia, id) => {
+        (forecasts && conditions) ? forecasts.map((dia, id) => {
           if(id !== 0) return <TempDay key={id} dia={dia} head={headline}/>
           else return <TempToday key={id} dia={dia} head={headline} city={city} condition={conditions}/>
         })
+        : 'nada'
         }
       </div>
       }
