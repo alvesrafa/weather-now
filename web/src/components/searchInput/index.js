@@ -5,6 +5,19 @@ import { GOOGLE_KEY } from '../../env.json';
 export default function SearchInput({cityKey}){
   const [address, setAddress] = useState('');
 
+  async function locationByAddress(address) { //Metodo que busca a cidade mesmo que o nome seja digitado incorretamente
+    let config = {
+        params: {
+          key: GOOGLE_KEY,
+          address,
+        } 
+    }
+    await api.get('maps/api/geocode/json', config)
+    .then( response => {
+      cityKey(response.data.results[0].formatted_address)
+    }).catch(e => console.log(e))
+  }
+
   useEffect(() => {
     
     navigator.geolocation.getCurrentPosition(
@@ -32,7 +45,7 @@ export default function SearchInput({cityKey}){
       await api.get('maps/api/geocode/json', config)
       .then( response => {
         setAddress(response.data.results[0].formatted_address)
-        setTimeout(()=> cityKey(response.data.results[0].formatted_address), 2500) //verificar se não é possivel colocar 'address' aqui
+        setTimeout(()=> cityKey(response.data.results[0].formatted_address), 1750) //verificar se não é possivel colocar 'address' aqui
       })
       .catch( e => {
         console.log(e)
@@ -47,7 +60,7 @@ export default function SearchInput({cityKey}){
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <input type="text" value={address} onChange={e => setAddress(e.target.value)}/>
-      <button onClick={() => cityKey(address)}> Buscar</button>
+      <button onClick={() => locationByAddress(address)}> Buscar</button>
     </form>
   )
 }
