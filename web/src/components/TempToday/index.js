@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FtoC, dataPadrao } from '../../assets/functions';
+import ToogleTime from '../../components/ToogleTime';
+import Dia from '../../components/Dia';
+import Noite from '../../components/Noite';
 import './today.css';
 import {DiaNoite} from '../../assets/styles'
 
 export default function TempToday({dia, head, city, condition}) {
-  
+  const [toogleState, setToogleState] = useState(false)
+
   return (
     <div className="card">
       <DiaNoite time={condition.IsDayTime ? '#5AD5FC' : '#0B1B25'} className="principal">
@@ -27,53 +31,18 @@ export default function TempToday({dia, head, city, condition}) {
         <p className="descricao">{condition.WeatherText}</p>
       </DiaNoite>
       <div className="detalhes">
-        <div className="dia">
-          <div>Durante o dia: {dia.Day.IconPhrase}</div>
-          <img src={`https://developer.accuweather.com/sites/default/files/${("0"+dia.Day.Icon).slice(-2)}-s.png`} alt=""/>
-         
+        <ToogleTime  toogleState={toogleState} setToogleState={setToogleState} />
+        {
+        toogleState ? 
+        <Noite noite={dia.Night}/>
+        : 
+        <Dia dia={dia.Day}/>
+        
+        }
 
-          <div>Chance de precipitação? {dia.Day.HasPrecipitation ? 'Sim' : 'Não'}</div>
-          <div>Intensidade: 
-            {
-              (dia.Day.PrecipitationIntensity === 'Light') ? ' Leve' : 
-              (dia.Day.PrecipitationIntensity ==='Moderate') ? ' Moderada' :
-              (dia.Day.PrecipitationIntensity ==='Heavy') ? ' Pesada' : ' --'
-            }
-          </div>
-          <div>Tipo: 
-            {
-              (dia.Day.PrecipitationType === 'Rain') ? ' Chuva' :
-              (dia.Day.PrecipitationType === 'Snow') ? ' Neve' :
-              (dia.Day.PrecipitationType === 'Ice') ? ' Granizo' :
-              (dia.Day.PrecipitationType === 'Mixed') ? ' Neve e Granizo' : ' --'
-            }
-          </div>
-
-        </div>
-        <div className="noite">
-          <div>Durante a noite: {dia.Day.IconPhrase}</div>
-          <img src={`https://developer.accuweather.com/sites/default/files/${("0"+dia.Day.Icon).slice(-2)}-s.png`} alt=""/>
-          
-          <div>Chance de precipitação? {dia.Day.HasPrecipitation ? 'Sim' : 'Não'}</div>
-          <div>Intensidade: 
-            {
-              (dia.Day.PrecipitationIntensity === 'Light') ? ' Leve' : 
-              (dia.Day.PrecipitationIntensity ==='Moderate') ? ' Moderada' :
-              (dia.Day.PrecipitationIntensity ==='Heavy') ? ' Pesada' : ' --'
-            }
-          </div>
-          <div>Tipo: 
-            {
-              (dia.Day.PrecipitationType === 'Rain') ? ' Chuva' :
-              (dia.Day.PrecipitationType === 'Snow') ? ' Neve' :
-              (dia.Day.PrecipitationType === 'Ice') ? ' Granizo' :
-              (dia.Day.PrecipitationType === 'Mixed') ? ' Neve e Granizo' : ' --'
-            }
-          </div>
-        </div>
+        
+      
       </div>
-      
-      
     </div>
   )
 }

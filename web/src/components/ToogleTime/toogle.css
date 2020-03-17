@@ -12,6 +12,9 @@ FCFCFC - stars
 
 .wrapper {
   text-align: center;
+  position: absolute;
+  right: 0;
+  top: 67%;
 }
 
 .toggle {

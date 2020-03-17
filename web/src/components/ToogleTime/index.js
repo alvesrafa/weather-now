@@ -1,16 +1,14 @@
 import React, { useState, useRef, createRef } from 'react';
 import './toogle.css'
-export default function ToogleTime(){
-  const [toogleState, setToogleState] = useState(false)
+export default function ToogleTime({toogleState, setToogleState}){
+  
   const toggle = createRef()
   function toogleChange() {
     toogleState ? setToogleState(false) : setToogleState(true)
   }
-
-
   return (
     <>
-    {toogleState ? 'true' : 'false'}
+    
   <div className="wrapper">
 
     <div className="toggle">

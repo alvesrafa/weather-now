@@ -6,7 +6,6 @@ import { KEY } from './env.json';
 import TempDay from './components/TempDay';
 import TempToday from './components/TempToday';
 import SearchInput from './components/searchInput';
-import ToogleTime from './components/ToogleTime';
 
 import animationData from './assets/loading.json';
 import Lottie from 'react-lottie';
@@ -64,7 +63,6 @@ function App() {
   return (
     <div className="App">
       <SearchInput cityKey={cityKey}/>
-      <ToogleTime/>
       {
       loading ?
       <Lottie
