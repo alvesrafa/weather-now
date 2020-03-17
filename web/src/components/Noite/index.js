@@ -12,7 +12,7 @@ export default function Noite({noite}){
         (noite.PrecipitationIntensity ==='Moderate') ? ' Moderada' :
         (noite.PrecipitationIntensity ==='Heavy') ? ' Pesada' : ' --'
       }</span></div>
-    <div classNmae="tipo">Tipo: <span>{
+    <div className="tipo">Tipo: <span>{
         (noite.PrecipitationType === 'Rain') ? ' Chuva' :
         (noite.PrecipitationType === 'Snow') ? ' Neve' :
         (noite.PrecipitationType === 'Ice') ? ' Granizo' :

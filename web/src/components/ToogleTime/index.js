@@ -1,11 +1,15 @@
-import React, { createRef } from 'react';
+import React, { useEffect ,createRef } from 'react';
 import './toogle.css'
 export default function ToogleTime({toogleState, setToogleState}){
   
   const toggle = createRef()
+  useEffect(()=> {
+    setToogleState(toggle.current.value)
+  },[])
   function toogleChange() {
     toogleState ? setToogleState(false) : setToogleState(true)
   }
+
   return (
     <>
     

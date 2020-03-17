@@ -37,10 +37,9 @@ export default function TempToday({dia, head, city, condition}) {
         <ToogleTime  toogleState={toogleState} setToogleState={setToogleState} />
         {
         toogleState ? 
-        <Noite noite={dia.Night}/>
-        : 
         <Dia dia={dia.Day}/>
-        
+        : 
+        <Noite noite={dia.Night}/>
         }
 
         
