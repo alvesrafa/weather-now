@@ -21,13 +21,13 @@ function App() {
   const [headline, setHeadline] = useState('');
 
   async function cityKey(address){
-    console.log(address)
     setLoading(true)
     
     let config = {
       params: {
         apikey: KEY,
         q: address,
+        language: 'pt-BR',
       } 
     };
     let newConfig = {
@@ -36,11 +36,15 @@ function App() {
         language: 'pt-BR',
       } 
     }
+    console.log(address)
     await api.get('/locations/v1/cities/search', config).then( response => {
-      if(response.data.length === 0) return console.log('array vazio');
+    
+    // if(!city.Key) return console.log('cityvazio');
+    // outras requisições aqui
+    if(response.data.length === 0) return console.log('array vazio');
 
-      setCity(response.data[0])
-      api.get(`/forecasts/v1/daily/5day/${response.data[0].Key}`, newConfig).then( response => {
+    setCity(response.data[0])
+    api.get(`/forecasts/v1/daily/5day/${response.data[0].Key}`, newConfig).then( response => {
         setForecasts(response.data.DailyForecasts)
         setHeadline(response.data.Headline)
       })
@@ -51,12 +55,8 @@ function App() {
       setLoading(false);
     }).catch(e => {
       console.log(e)
+    
     })
-    
-    // if(!city.Key) return console.log('cityvazio');
-    // outras requisições aqui
-    
-    
     
   }
 
