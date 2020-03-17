@@ -69,3 +69,30 @@ form button:hover {
     flex-direction: column;
   }
 }
+
+.detalhes .dia {
+  width: 100%;
+  background-color: #f5cd79;
+  padding: 10px 20px;
+  color: #333;
+  transition: all 1s ease-in-out;
+}
+.detalhes span {
+  font-weight: bold;
+  font-size: 18px;
+}
+.detalhes .noite {
+  width: 100%;
+  background-color: #596275;
+  padding: 10px 20px;
+  color: #FCFCFC;
+  opacity: 100;
+  transition: all 1s ease-in-out;
+}
+.detalhes .frase {
+  font-size: 20px;
+  font-weight: bold;
+}
+.detalhes div {
+  font-weight: 550;
+}

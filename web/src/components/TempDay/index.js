@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './otherDay.css';
 import { FtoC, dataPadrao } from '../../assets/functions';
 import ToogleTime from '../../components/ToogleTime';
+import Dia from '../../components/Dia';
+import Noite from '../../components/Noite';
+
 import { Modal } from 'react-bootstrap';
 
 export default function TempDay({dia, head}) {;
@@ -35,53 +38,10 @@ export default function TempDay({dia, head}) {;
           <ToogleTime  toogleState={toogleState} setToogleState={setToogleState} />
           {
           toogleState ? 
-            <div className="noite">
-              <div>Durante a noite: {dia.Day.IconPhrase}</div>
-              <img src={`https://developer.accuweather.com/sites/default/files/${("0"+dia.Day.Icon).slice(-2)}-s.png`} alt=""/>
-              
-              <div>Chance de precipitação? {dia.Day.HasPrecipitation ? 'Sim' : 'Não'}</div>
-              <div>Intensidade: 
-                {
-                  (dia.Day.PrecipitationIntensity === 'Light') ? ' Leve' : 
-                  (dia.Day.PrecipitationIntensity ==='Moderate') ? ' Moderada' :
-                  (dia.Day.PrecipitationIntensity ==='Heavy') ? ' Pesada' : ' --'
-                }
-              </div>
-              <div>Tipo: 
-                {
-                  (dia.Day.PrecipitationType === 'Rain') ? ' Chuva' :
-                  (dia.Day.PrecipitationType === 'Snow') ? ' Neve' :
-                  (dia.Day.PrecipitationType === 'Ice') ? ' Granizo' :
-                  (dia.Day.PrecipitationType === 'Mixed') ? ' Neve e Granizo' : ' --'
-                }
-              </div>
-            </div>
-            :
-            
-            <div className="dia">
-              <div>Durante o dia: {dia.Day.IconPhrase}</div>
-              <img src={`https://developer.accuweather.com/sites/default/files/${("0"+dia.Day.Icon).slice(-2)}-s.png`} alt=""/>
-            
-
-              <div>Chance de precipitação? {dia.Day.HasPrecipitation ? 'Sim' : 'Não'}</div>
-              <div>Intensidade: 
-                {
-                  (dia.Day.PrecipitationIntensity === 'Light') ? ' Leve' : 
-                  (dia.Day.PrecipitationIntensity ==='Moderate') ? ' Moderada' :
-                  (dia.Day.PrecipitationIntensity ==='Heavy') ? ' Pesada' : ' --'
-                }
-              </div>
-              <div>Tipo: 
-                {
-                  (dia.Day.PrecipitationType === 'Rain') ? ' Chuva' :
-                  (dia.Day.PrecipitationType === 'Snow') ? ' Neve' :
-                  (dia.Day.PrecipitationType === 'Ice') ? ' Granizo' :
-                  (dia.Day.PrecipitationType === 'Mixed') ? ' Neve e Granizo' : ' --'
-                }
-              </div>
-
-            </div>
-            }
+          <Dia dia={dia.Day}/>
+          : 
+          <Noite noite={dia.Night}/>
+          }
 
           </div>
         

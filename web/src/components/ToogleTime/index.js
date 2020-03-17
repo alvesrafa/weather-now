@@ -1,4 +1,4 @@
-import React, { useState, useRef, createRef } from 'react';
+import React, { createRef } from 'react';
 import './toogle.css'
 export default function ToogleTime({toogleState, setToogleState}){
   

@@ -49,20 +49,7 @@
 .card .detalhes {
   display: flex;
 }
-.detalhes .dia {
-  width: 100%;
-  background-color: #f5cd79;
-  padding: 10px 20px;
-  color: #333;
-  transition: 0.4s ease-out;
-}
-.detalhes .noite {
-  width: 100%;
-  background-color: #596275;
-  padding: 10px 20px;
-  color: #DDD;
-  transition: 0.4s ease-out;
-}
+
 
 @media only screen and (max-width: 620px) {
   .card .detalhes {

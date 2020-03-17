@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { FtoC, dataPadrao } from '../../assets/functions';
 import ToogleTime from '../../components/ToogleTime';
-import Dia from '../../components/Dia';
-import Noite from '../../components/Noite';
+import Noite from '../Noite';
+import Dia from '../Dia';
+
+
+
 import './today.css';
 import {DiaNoite} from '../../assets/styles'
 
