@@ -14,45 +14,45 @@ export default function SearchInput({cityKey}){
     }
     await api.get('maps/api/geocode/json', config)
     .then( response => {
-      cityKey(response.data.results[0].formatted_address)
+      // response.data.results[0].formatted_address;
+      let address_google = response.data.results[0].address_components[0].long_name.replace(/[.]/g,'')
+      cityKey(address_google.replace(/[-]/g,''))
     }).catch(e => console.log(e))
   }
 
-  useEffect(() => {
-    
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        locationByCord(latitude, longitude)
+  // useEffect(() => {
+  //   if(address) return ;
+  //   navigator.geolocation.getCurrentPosition(
+  //     (position) => {
+  //       const { latitude, longitude } = position.coords;
+  //       locationByCord(latitude, longitude)
 
-      },
-      (err) => {
-          console.log(err)
-      },
-        {
-          timeout:30000
-        }
-    );
+  //     },
+  //     (err) => {
+  //         console.log(err)
+  //     },
+  //       {
+  //         timeout:30000
+  //       }
+  //   );
 
-    async function locationByCord(lat, long){
-      let config = {
-          params: {
-            key: GOOGLE_KEY,
-            latlng: lat+','+long,
-          } 
-      }
+  //   async function locationByCord(lat, long){
+  //     let config = {
+  //         params: {
+  //           key: GOOGLE_KEY,
+  //           latlng: lat+','+long,
+  //         } 
+  //     }
   
-      await api.get('maps/api/geocode/json', config)
-      .then( response => {
-        setAddress(response.data.results[0].formatted_address)
-        setTimeout(()=> cityKey(response.data.results[0].formatted_address), 1750) //verificar se não é possivel colocar 'address' aqui
-      })
-      .catch( e => {
-        console.log(e)
-      })
-    }
+  //     await api.get('maps/api/geocode/json', config)
+  //     .then( response => {
+  //       setAddress(response.data.results[0].formatted_address)
+  //       setTimeout(()=> cityKey(response.data.results[0].formatted_address), 1750) //verificar se não é possivel colocar 'address' aqui
+  //     })
+  //     .catch( e => console.log(e))
+  //   }
     
-  }, [])
+  // }, [cityKey, address])
 
   
   
