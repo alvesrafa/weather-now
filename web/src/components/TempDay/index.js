@@ -26,8 +26,6 @@ export default function TempDay({dia, head}) {;
       </Modal.Header>
       <Modal.Body 
         className="modal-body"
-        fade={true}
-        centered={true}
 
       >
      

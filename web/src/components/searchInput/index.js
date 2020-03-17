@@ -15,8 +15,11 @@ export default function SearchInput({cityKey}){
     await api.get('maps/api/geocode/json', config)
     .then( response => {
       // response.data.results[0].formatted_address;
-      let address_google = response.data.results[0].address_components[0].long_name.replace(/[.]/g,'')
-      cityKey(address_google.replace(/[-]/g,''))
+      console.log(response.data)
+      let address1 = response.data.results[0].address_components[0].long_name.replace(/[.]/g,'')
+      let address2 = response.data.results[0].address_components.pop().long_name.replace(/[.]/g,'')
+      let address_google = address1 + ', ' + address2
+      cityKey(address_google)
     }).catch(e => console.log(e))
   }
 
