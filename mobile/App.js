@@ -7,8 +7,17 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      
-      <TextInput style={styles.searchBar}/>
+
+      <View style={styles.searchBlock}>
+        <TextInput
+          style={styles.searchInput}
+          editable
+          maxLength={40}
+        />
+        <TouchableOpacity style={styles.searchButton}>
+          <Text>Botao</Text>
+        </TouchableOpacity>
+      </View>
       
       <View style={styles.weatherBlock}>
         <View style={styles.localeName}>
@@ -24,13 +33,13 @@ export default function App() {
         </View>
 
         <View style={styles.localeName}>
-          <Text>Parcialmente nublado</Text>
+          <Text style={fonts.phrase}>Parcialmente nublado nublado nublado nublado nublado nubladonublado nublado nublado nubladov</Text>
         </View>
 
         <View style={styles.localeName}>
-          <Text>Chance de preciptação?</Text>
-          <Text>Chance de preciptação?</Text>
-          <Text>Chance de preciptação?</Text>
+          <Text style={fonts.paragraph}>Chance de preciptação?</Text>
+          <Text style={fonts.paragraph}>Intensidade?</Text>
+          <Text style={fonts.paragraph}>Tipo?</Text>
         </View>
 
         <View style={styles.forecasts}>
@@ -73,12 +82,25 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     paddingLeft: 15,
   },
-  searchBar: {
+  searchBlock: {
     width: '100%',
-    backgroundColor: '#686de0',
-    height: 35,
+    height: 60,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 5,
-    marginTop: 15,
+  },
+  searchInput: {
+    width: '80%',
+    backgroundColor: '#FFF',
+    height: 45,
+    borderRadius: 10,
+  },
+  searchButton: {
+    padding: 10,
+    width: '15%',
+    backgroundColor: '#FFF',
+    borderRadius: 50,
   },
   weatherBlock: {
     flex: 1,
@@ -167,6 +189,14 @@ const fonts = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#c7ecee',
+  },
+  phrase: {
+    fontSize: 19,
+    fontWeight: 'bold',
+  },
+  paragraph: {
+    fontWeight: 'bold',
+    fontSize: 15
   }
 
 })
