@@ -4,7 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import api from '../services/googleApi';
 import { GOOGLE_KEY } from '../../env.json';
 
-export default function SearchInput(){
+export default function SearchInput({search}){
   const [address, setAddress] = useState('');
 
   async function handleSearch(){
@@ -20,6 +20,7 @@ export default function SearchInput(){
         let address2 = response.data.results[0].address_components.pop().long_name.replace(/[.]/g,'')
         let address_google = address1 + ', ' + address2
         console.log(address_google)
+        search(address_google)
     }).catch(e => console.log(e))
       
   }

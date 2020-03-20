@@ -1,41 +1,72 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import DailyForecast from './DailyForecast';
 
-export default function Weather(){
+import api from '../services/api';
+import { KEY } from '../../env.json';
+
+export default function Weather({city}){
+  const [conditions, setConditions] = useState('');
+  const [forecasts, setForecasts] = useState('');
+  const [headline, setHeadline] = useState('');
+
+  useEffect(()=> {
+    let config = {
+      params: {
+        apikey: KEY,
+        language: 'pt-BR',
+      } 
+    }
+    api.get(`/forecasts/v1/daily/5day/${city.Key}`, config).then( response => {
+      setForecasts(response.data.DailyForecasts)
+      setHeadline(response.data.Headline)
+    })
+    api.get(`/currentconditions/v1/${city.Key}`, config).then( response => {
+      setConditions(response.data[0])
+    })
+    setTimeout(() => console.log('city'+city, 'conditions'+conditions, 'forecasts'+forecasts, 'headline'+headline), 5000)
+  }, [])
+
   return (
-    <View style={styles.weatherBlock}>
-      <View style={styles.localeName}>
-        <Text style={fonts.locale}>Ilhabela, SP</Text>
-      </View>
-      <View style={styles.localeTemperature}>
-        <Text style={fonts.tempMax}>31ºC</Text>
-        <Text style={fonts.tempMin}>13ºC</Text>
-      </View>
-      <View style={styles.date}>
-        <Text style={fonts.date}>19/03/2020</Text>
-        <Text style={fonts.dateName}>Quinta-feira</Text>
-      </View>
+    <>
+    {
+      (conditions && forecasts && headline) ?
+      <View style={styles.weatherBlock}>
+        <View style={styles.localeName}>
+          <Text style={fonts.locale}>{city.LocalizedName}, {city.AdministrativeArea.LocalizedName}</Text>
+        </View>
+        <View style={styles.localeTemperature}>
+          <Text style={fonts.tempMax}>{conditions.Temperature.Metric.Value} C, {forecasts[0].Temperature.Maximum.Value} F</Text>
+          <Text style={fonts.tempMin}>{forecasts[0].Temperature.Minimum.Value} F</Text>
+        </View>
+        <View style={styles.date}>
+          <Text style={fonts.date}>{forecasts[0].Date}</Text>
+          <Text style={fonts.dateName}>{forecasts[0].Date}</Text>
+        </View>
 
-      <View style={styles.phrase}>
-        <Text style={fonts.phrase}>Parcialmente nublado nublado nublado nublado nublado nubladonublado nublado nublado nubladov</Text>
-      </View>
+        <View style={styles.phrase}>
+          <Text style={fonts.phrase}>{conditions.WeatherText}</Text>
+        </View>
 
-      <View style={styles.paragraph}>
-        <Text style={fonts.paragraph}>Chance de preciptação?</Text>
-        <Text style={fonts.paragraph}>Intensidade?</Text>
-        <Text style={fonts.paragraph}>Tipo?</Text>
-      </View>
+        <View style={styles.paragraph}>
+          <Text style={fonts.paragraph}>Chance de preciptação?</Text>
+          <Text style={fonts.paragraph}>Intensidade?</Text>
+          <Text style={fonts.paragraph}>Tipo?</Text>
+        </View>
 
-      <View style={styles.forecasts}>
-        <DailyForecast/>
-        <DailyForecast/>
-        <DailyForecast/>
-        <DailyForecast/>
-      </View>
+        <View style={styles.forecasts}>
+          <DailyForecast/>
+          <DailyForecast/>
+          <DailyForecast/>
+          <DailyForecast/>
+        </View>
 
-    </View>
+      </View>
+      :
+      <Text>Nada ainda</Text>
+    }
+    </>
   )
 }
 const styles = StyleSheet.create({
