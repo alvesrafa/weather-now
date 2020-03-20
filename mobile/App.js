@@ -1,23 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-import * as Location from 'expo-location';
-import * as Permissions from 'expo-permissions';
+import React from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { GoogleAutoComplete } from 'react-native-google-autocomplete';
+
+import LocationItem from './src/components/LocationItem';
+
 
 export default function App() {
-
+ 
   return (
     <View style={styles.container}>
 
-      <View style={styles.searchBlock}>
-        <TextInput
-          style={styles.searchInput}
-          editable
-          maxLength={40}
-        />
-        <TouchableOpacity style={styles.searchButton}>
-          <Text>Botao</Text>
-        </TouchableOpacity>
-      </View>
+<GoogleAutoComplete  apiKey="" debounce={500} minLength={3}>
+        {({ handleTextChange, locationResults, fetchDetails }) => (
+          <React.Fragment >
+            <View style={{backgroundColor: '#DDD'}}>
+              <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <TextInput style={{backgroundColor: '#FFF', width: '80%'}}
+                  placeholder="buscar cidades" 
+                  onChangeText={handleTextChange}
+                />
+                <TouchableOpacity style={{backgroundColor: '#FFF', width: '15%'}}>
+                  <Text>Botao</Text>
+                </TouchableOpacity>
+              </View>
+              
+              <ScrollView style={{backgroundColor: '#FFF', position: 'absolute'}}>
+                {locationResults.map(el => (
+                  <LocationItem
+                  key={el.id}  
+                  {...el}
+                  fetchDetails={fetchDetails}
+                  />
+                ))}
+              </ScrollView>
+            </View>
+            
+          </React.Fragment>
+        )}
+      </GoogleAutoComplete>
+
+        
       
       <View style={styles.weatherBlock}>
         <View style={styles.localeName}>
@@ -82,6 +104,9 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     paddingLeft: 15,
   },
+  searchView: {
+    marginTop: 80
+  },
   searchBlock: {
     width: '100%',
     height: 60,
@@ -89,12 +114,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 5,
+    backgroundColor: '#FFF'
   },
   searchInput: {
     width: '80%',
     backgroundColor: '#FFF',
     height: 45,
     borderRadius: 10,
+  },
+  searchItens: {
+    width: '100%',
+    position: 'absolute'
   },
   searchButton: {
     padding: 10,
