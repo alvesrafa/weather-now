@@ -25,7 +25,7 @@ export default function Weather({city}){
     api.get(`/currentconditions/v1/${city.Key}`, config).then( response => {
       setConditions(response.data[0])
     })
-    setTimeout(() => console.log('city'+city, 'conditions'+conditions, 'forecasts'+forecasts, 'headline'+headline), 5000)
+    
   }, [])
 
   return (
@@ -56,10 +56,10 @@ export default function Weather({city}){
         </View>
 
         <View style={styles.forecasts}>
-          <DailyForecast/>
-          <DailyForecast/>
-          <DailyForecast/>
-          <DailyForecast/>
+          {forecasts.filter((dia,id) => id !== 0).map((dia, id) => (
+            <DailyForecast key={id} dia={dia}/>
+          ))}
+          
         </View>
 
       </View>

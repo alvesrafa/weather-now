@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function dailyforecast(){
+export default function dailyforecast({dia}){
   return(
     <View style={styles.daily}>
-      <Text style={fonts.dateDaily}>19/03/2020</Text>
-      <Text style={fonts.dailyMax}>25ºC</Text>
-      <Text style={fonts.dailyMin}>19ºC</Text>
+      <Text style={fonts.dateDaily}>{dia.Date}</Text>
+      <Text style={fonts.dailyMax}>{dia.Temperature.Maximum.Value} F</Text>
+      <Text style={fonts.dailyMin}>{dia.Temperature.Minimum.Value} F</Text>
     </View>
   )
 }
