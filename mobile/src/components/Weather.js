@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+import DailyForecast from './DailyForecast';
+
 export default function Weather(){
   return (
     <View style={styles.weatherBlock}>
@@ -27,26 +29,10 @@ export default function Weather(){
       </View>
 
       <View style={styles.forecasts}>
-        <View style={styles.daily}>
-          <Text style={fonts.dateDaily}>19/03/2020</Text>
-          <Text style={fonts.dailyMax}>25ºC</Text>
-          <Text style={fonts.dailyMin}>19ºC</Text>
-        </View>
-        <View style={styles.daily}>
-          <Text style={fonts.dateDaily}>19/03/2020</Text>
-          <Text style={fonts.dailyMax}>25ºC</Text>
-          <Text style={fonts.dailyMin}>19ºC</Text>
-        </View>
-        <View style={styles.daily}>
-          <Text style={fonts.dateDaily}>19/03/2020</Text>
-          <Text style={fonts.dailyMax}>25ºC</Text>
-          <Text style={fonts.dailyMin}>19ºC</Text>
-        </View>
-        <View style={styles.daily}>
-          <Text style={fonts.dateDaily}>19/03/2020</Text>
-          <Text style={fonts.dailyMax}>25ºC</Text>
-          <Text style={fonts.dailyMin}>19ºC</Text>
-        </View>
+        <DailyForecast/>
+        <DailyForecast/>
+        <DailyForecast/>
+        <DailyForecast/>
       </View>
 
     </View>
@@ -116,15 +102,7 @@ const styles = StyleSheet.create({
     flexWrap: 'nowrap',
     justifyContent: 'space-between',
   },
-  daily: {
-    backgroundColor: '#e0f7fa',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '23%',
-    padding: 7,
-    borderRadius: 3,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
+  
 })
 const fonts = StyleSheet.create({
   locale: {
@@ -149,27 +127,13 @@ const fonts = StyleSheet.create({
     fontWeight: 'bold',
     color: '#006060',
   },
-  dateDaily: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    color: '#006060',
-  },
+ 
   dateName: {
     fontSize: 22,
     fontWeight: 'bold',
     color: '#006060',
   },
-  dailyMax: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#eb4d4b',
-  },
-  dailyMin: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#00b8d4',
-  },
+  
   phrase: {
     fontSize: 19,
     fontWeight: 'bold',
