@@ -31,7 +31,7 @@ export default function Main() {
         city ?
         <Weather city={city}/>
         :
-        <Lottie resizeMode="contain" autoSize source={loading} autoPlay loop/>
+        <Text>asfasf</Text>
       }
     </View>
   )
