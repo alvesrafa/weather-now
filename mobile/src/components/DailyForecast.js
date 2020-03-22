@@ -1,43 +1,40 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { diaSemana, dataPadrao, FtoC } from '../assets/functions'
-
+import { diaSemanaMenor, dataPadrao, FtoC } from '../assets/functions'
+import styled from 'styled-components/native';
 export default function dailyforecast({dia}){
   return(
-    <View style={styles.daily}>
-      <Text style={fonts.dateDaily}>{dataPadrao(dia.Date)}</Text>
-      <Text style={fonts.dateDaily}>{diaSemana(dia.Date)}</Text>
-      <Text style={fonts.dailyMax}>{FtoC(dia.Temperature.Maximum.Value)} F</Text>
-      <Text style={fonts.dailyMin}>{FtoC(dia.Temperature.Minimum.Value)} F</Text>
-    </View>
+    <Daily>
+      <DateDaily>{dataPadrao(dia.Date)}</DateDaily>
+      <DateDaily>{diaSemanaMenor(dia.Date)}</DateDaily>
+      <DailyMax>{FtoC(dia.Temperature.Maximum.Value)} F</DailyMax>
+      <DailyMin>{FtoC(dia.Temperature.Minimum.Value)} F</DailyMin>
+    </Daily>
   )
 }
-const styles = StyleSheet.create({
-  daily: {
-    backgroundColor: '#e0f7fa',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '23%',
-    padding: 7,
-    borderRadius: 3,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-})
-const fonts = StyleSheet.create({
-  dateDaily: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    color: '#006060',
-  },
-  dailyMax: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#eb4d4b',
-  },
-  dailyMin: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#00b8d4',
-  },
-})
+
+export const Daily = styled.View`
+  background-color: ${props => props.theme.background};
+  justify-content: center;
+  align-items: center;
+  width: 23%;
+  padding: 7px;
+  border-radius: 3px;
+`
+
+export const DateDaily = styled.Text`
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: ${props => props.theme.font};
+`
+export const DailyMax = styled.Text`
+  font-size: 22px;
+  font-weight: bold;
+  color: #eb4d4b;
+`
+export const DailyMin = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+  color: #00b8d4;
+`

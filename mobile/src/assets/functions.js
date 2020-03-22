@@ -27,3 +27,17 @@ export function diaSemana(date) {
 
   return diaSemanaString;
 }
+export function diaSemanaMenor(date) {
+  date = new Date(date);
+  var diaSemana = date.getDay();
+  let diaSemanaString = '';
+  if (diaSemana === 0) diaSemanaString = "Domingo";
+  if (diaSemana === 1) diaSemanaString = "Segunda";
+  if (diaSemana === 2) diaSemanaString = "Terça";
+  if (diaSemana === 3) diaSemanaString = "Quarta";
+  if (diaSemana === 4) diaSemanaString = "Quinta";
+  if (diaSemana === 5) diaSemanaString = "Sexta";
+  if (diaSemana === 6) diaSemanaString = "Sábado";
+
+  return diaSemanaString;
+}

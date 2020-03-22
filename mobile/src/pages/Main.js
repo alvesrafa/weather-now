@@ -4,6 +4,7 @@ import api from '../services/api';
 import { KEY } from '../../env.json';
 import Weather from '../components/Weather';
 import SearchInput from '../components/SearchInput';
+
 import Lottie from 'lottie-react-native';
 import loading from '../assets/loading.json';
 
@@ -38,10 +39,9 @@ export default function Main() {
 }
 
 const styles = StyleSheet.create({
-  
   container: {
     flex: 1,
-    backgroundColor: '#30336b',
+    backgroundColor: '#FFF',
   },
   
   

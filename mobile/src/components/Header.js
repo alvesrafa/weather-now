@@ -1,45 +1,44 @@
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, Switch } from 'react-native';
 import Constants from 'expo-constants';
-
-export default function Header(){
-  const [checked, setChecked] = useState('');
-
+import styled from 'styled-components/native'
+export default function Header({checked, setChecked, colors}){
   function handleChange(){
-    console.log(checked)
-    checked ? setChecked(false) : setChecked(true);
+    checked ? setChecked(false) : setChecked(true)
     
   }
 
   return(
     <>
       <View style={styles.statusBar} />
-      <View style={styles.header}>
-        <Text style={styles.title}>Weather now</Text>
+      <HeaderView>
+        <Title>Weather now</Title>
         <Switch 
           onValueChange={handleChange}
           value={checked}
           thumbColor={'#A0CECB'}
           trackColor={{true: '#FFF', false: '#000'}}
         />
-      </View>
+      </HeaderView>
     </>
   )
 }
 const styles = StyleSheet.create({
   statusBar: {
-    backgroundColor: "#3C3B3D",
+    backgroundColor: '#AAB2BD',
     height: Constants.statusBarHeight,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold'
-  },
-  header: {
-    padding: 10,
-    backgroundColor: '#3C3B3D',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row'
-  }
 })
+export const Title = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  color: ${props => props.theme.font};
+`
+export const HeaderView = styled.View`
+  padding: 10px;
+  background-color: ${props => props.theme.background};
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+`
+    

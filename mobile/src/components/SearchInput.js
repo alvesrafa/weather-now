@@ -3,6 +3,8 @@ import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import api from '../services/googleApi';
 import { GOOGLE_KEY } from '../../env.json';
+import styled from 'styled-components/native';
+
 
 export default function SearchInput({search}){
   const [address, setAddress] = useState('');
@@ -25,52 +27,50 @@ export default function SearchInput({search}){
       
   }
   return (
-    <View style={styles.searchBlock}>
-      <TextInput
-        style={styles.searchInput}
+    <SearchBlock>
+      <SearchInputItem
         editable
         maxLength={40}
         value={address}
         onChangeText={setAddress}
         onSubmitEditing={handleSearch}
       />
-      <TouchableOpacity onPress={handleSearch} style={styles.searchButton}>
-        <FontAwesome name="search" size={32} color="#b2ebf2" />
-      </TouchableOpacity>
-    </View>
+      <SearchButton onPress={handleSearch}>
+        <FontAwesome name="search" size={32} color="#AAA" />
+      </SearchButton>
+    </SearchBlock>
   )
 }
-const styles = StyleSheet.create({
-  searchBlock: {
-    width: '100%',
-    height: 60,
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 5,
-    backgroundColor: '#80deea',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  searchInput: {
-    width: '80%',
-    backgroundColor: '#e0f7fa',
-    height: 45,
-    borderTopLeftRadius: 5,
-    borderBottomLeftRadius: 5,
-    padding: 5,
-  },
-  searchItens: {
-    width: '100%',
-    position: 'absolute'
-  },
-  searchButton: {
-    padding: 10,
-    height: 45,
-    width: '20%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#e0f7fa',
-    borderTopRightRadius: 5,
-    borderBottomRightRadius: 5,
-  },
-})
+  export const SearchBlock = styled.View`
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: ${props => props.theme.tertiary};
+  `
+  export const SearchInputItem = styled.TextInput`
+    width: 80%;
+    background-color: ${props => props.theme.primary};
+    height: 45px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 5px;
+  `
+  export const SearchItens = styled.View`
+    width: 100%;
+    position: absolute;
+  `
+  export const SearchButton = styled.TouchableOpacity`
+    padding: 10px;
+    height: 45px;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    background-color: ${props => props.theme.primary};
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  `
+    
+

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { diaSemana, dataPadrao, FtoC } from '../assets/functions'
 import DailyForecast from './DailyForecast';
+import styled from 'styled-components';
 
 import api from '../services/api';
 import { KEY } from '../../env.json';
@@ -32,153 +33,144 @@ export default function Weather({city}){
     <>
     {
       (conditions && forecasts && headline) ?
-      <View style={styles.weatherBlock}>
-        <View style={styles.localeName}>
-          <Text style={fonts.locale}>{city.LocalizedName}, {city.AdministrativeArea.LocalizedName}</Text>
-        </View>
-        <View style={styles.localeTemperature}>
-          <Text style={fonts.temp}>{parseInt(conditions.Temperature.Metric.Value)} ºC</Text>
-          <Text style={fonts.tempMax}>Máxima de {FtoC(forecasts[0].Temperature.Maximum.Value)} ºC</Text>
-          <Text style={fonts.tempMin}>Mínima de {FtoC(forecasts[0].Temperature.Minimum.Value)} ºC</Text>
-        </View>
-        <View style={styles.date}>
-          <Text style={fonts.date}>{dataPadrao(forecasts[0].Date)}</Text>
-          <Text style={fonts.dateName}>{diaSemana(forecasts[0].Date)}</Text>
-        </View>
+      <WeatherBlock>
+        <LocaleName>
+          <TextLocale>{city.LocalizedName}, {city.AdministrativeArea.LocalizedName}</TextLocale>
+        </LocaleName>
+        <LocaleTemperature>
+          <TextTemp >{parseInt(conditions.Temperature.Metric.Value)} ºC</TextTemp>
+          <TextTempMax>Máxima de {FtoC(forecasts[0].Temperature.Maximum.Value)} ºC</TextTempMax>
+          <TextTempMin>Mínima de {FtoC(forecasts[0].Temperature.Minimum.Value)} ºC</TextTempMin>
+        </LocaleTemperature>
+        <Dates>
+          <TextDate>{dataPadrao(forecasts[0].Date)}</TextDate>
+          <TextDateName>{diaSemana(forecasts[0].Date)}</TextDateName>
+        </Dates>
 
-        <View style={styles.phrase}>
-          <Text style={fonts.phrase}>{conditions.WeatherText}</Text>
-        </View>
+        <Phrase>
+          <TextPhrase>{conditions.WeatherText}</TextPhrase>
+        </Phrase>
 
-        <View style={styles.paragraph}>
-          <Text style={fonts.paragraph}>Chance de preciptação?</Text>
-          <Text style={fonts.paragraph}>Intensidade?</Text>
-          <Text style={fonts.paragraph}>Tipo?</Text>
-        </View>
+        <Paragraph>
+          <TextParagraph>Chance de preciptação?</TextParagraph>
+          <TextParagraph>Intensidade?</TextParagraph>
+          <TextParagraph>Tipo?</TextParagraph>
+        </Paragraph>
 
-        <View style={styles.forecasts}>
+        <Forecasts>
           {forecasts.filter((dia,id) => id !== 0).map((dia, id) => (
             <DailyForecast key={id} dia={dia}/>
           ))}
           
-        </View>
+        </Forecasts>
 
-      </View>
+      </WeatherBlock>
       :
       <Text>Nada ainda</Text>
     }
     </>
   )
 }
-const styles = StyleSheet.create({
-  weatherBlock: {
-    flex: 1,
-    paddingTop: 20,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    height: '100%',
-    backgroundColor: '#b2ebf2',
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-  localeName: {
-    backgroundColor: '#e0f7fa',
-    padding: 15,
-    width: '100%',
-    marginBottom: 20,
-    borderRadius: 3,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  localeTemperature: {
-    backgroundColor: '#e0f7fa',
-    padding: 15,
-    width: '48%',
-    height: '25%',
-    marginBottom: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 3,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  date: {
-    backgroundColor: '#e0f7fa',
-    padding: 15,
-    width: '48%',
-    height: '25%',
-    marginBottom: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 3,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  paragraph: {
-    backgroundColor: '#e0f7fa',
-    padding: 15,
-    width: '100%',
-    marginBottom: 20,
-    borderRadius: 3,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  phrase: {
-    backgroundColor: '#e0f7fa',
-    padding: 15,
-    width: '100%',
-    marginBottom: 20,
-    borderRadius: 3,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  forecasts: {
-    width: '100%',
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    justifyContent: 'space-between',
-  },
-  
-})
-const fonts = StyleSheet.create({
-  locale: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#006060',
-  },
-  temp: {
-    fontSize: 35,
-    fontWeight: 'bold',
-    margin: 5,
-  },
-  tempMax: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#eb4d4b',
-    
-  },
-  tempMin: {
-    fontSize: 19,
-    fontWeight: 'bold',
-    color: '#00b8d4',
-  },
-  date: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#006060',
-  },
- 
-  dateName: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#006060',
-  },
-  
-  phrase: {
-    fontSize: 19,
-    fontWeight: 'bold',
-    color: '#006060',
-  },
-  paragraph: {
-    fontWeight: 'bold',
-    fontSize: 15,
-    color: '#006060',
-  }
+export const WeatherBlock = styled.View`
+  flex: 1;
+  padding-top: 20px;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 100%;
+  background-color: ${props => props.theme.background};
+  padding-left: 15px;
+  padding-right: 15px;
+`
 
-})
+export const LocaleName = styled.View`
+  background-color: ${props => props.theme.primary};
+  padding: 15px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 3px;
+`
+export const LocaleTemperature = styled.View`
+  background-color: ${props => props.theme.primary};
+  padding: 15px;
+  width: 48%;
+  height: 25%;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+`
+export const Dates = styled.View`
+  background-color: ${props => props.theme.primary};
+  padding: 15px;
+  width: 48%;
+  height: 25%;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+`
+export const Paragraph = styled.View`
+  background-color: ${props => props.theme.primary};
+  padding: 15px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 3px;
+`
+export const Phrase = styled.View`
+  background-color: ${props => props.theme.primary};
+  padding: 15px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 3px;
+`
+export const Forecasts = styled.View`
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+`
+export const TextLocale = styled.Text`
+font-size: 25px;
+font-weight: bold;
+color: ${props => props.theme.font};
+`
+export const TextTemp = styled.Text`
+font-size: 35px;
+font-weight: bold;
+margin: 5px;
+color: ${props => props.theme.font};
+`
+export const TextTempMax = styled.Text`
+font-size: 20px;
+font-weight: bold;
+color: #eb4d4b;
+
+`
+export const TextTempMin = styled.Text`
+font-size: 19px;
+font-weight: bold;
+color: #00b8d4;
+`
+export const TextDate = styled.Text`
+font-size: 22px;
+font-weight: bold;
+color: ${props => props.theme.font};
+`
+
+export const TextDateName = styled.Text`
+font-size: 22px;
+font-weight: bold;
+color: ${props => props.theme.font};
+`
+
+export const TextPhrase = styled.Text`
+font-size: 19px;
+font-weight: bold;
+color: ${props => props.theme.font};
+`
+export const TextParagraph = styled.Text`
+font-weight: bold;
+font-size: 15px;
+color: ${props => props.theme.font};
+`
