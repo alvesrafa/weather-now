@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { diaSemana, dataPadrao, FtoC } from '../assets/functions'
 
 export default function dailyforecast({dia}){
   return(
     <View style={styles.daily}>
-      <Text style={fonts.dateDaily}>{dia.Date}</Text>
-      <Text style={fonts.dailyMax}>{dia.Temperature.Maximum.Value} F</Text>
-      <Text style={fonts.dailyMin}>{dia.Temperature.Minimum.Value} F</Text>
+      <Text style={fonts.dateDaily}>{dataPadrao(dia.Date)}</Text>
+      <Text style={fonts.dateDaily}>{diaSemana(dia.Date)}</Text>
+      <Text style={fonts.dailyMax}>{FtoC(dia.Temperature.Maximum.Value)} F</Text>
+      <Text style={fonts.dailyMin}>{FtoC(dia.Temperature.Minimum.Value)} F</Text>
     </View>
   )
 }

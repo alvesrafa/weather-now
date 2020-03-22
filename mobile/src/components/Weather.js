@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
+import { diaSemana, dataPadrao, FtoC } from '../assets/functions'
 import DailyForecast from './DailyForecast';
 
 import api from '../services/api';
@@ -37,12 +37,13 @@ export default function Weather({city}){
           <Text style={fonts.locale}>{city.LocalizedName}, {city.AdministrativeArea.LocalizedName}</Text>
         </View>
         <View style={styles.localeTemperature}>
-          <Text style={fonts.tempMax}>{conditions.Temperature.Metric.Value} C, {forecasts[0].Temperature.Maximum.Value} F</Text>
-          <Text style={fonts.tempMin}>{forecasts[0].Temperature.Minimum.Value} F</Text>
+          <Text style={fonts.temp}>{parseInt(conditions.Temperature.Metric.Value)} ºC</Text>
+          <Text style={fonts.tempMax}>Máxima de {FtoC(forecasts[0].Temperature.Maximum.Value)} ºC</Text>
+          <Text style={fonts.tempMin}>Mínima de {FtoC(forecasts[0].Temperature.Minimum.Value)} ºC</Text>
         </View>
         <View style={styles.date}>
-          <Text style={fonts.date}>{forecasts[0].Date}</Text>
-          <Text style={fonts.dateName}>{forecasts[0].Date}</Text>
+          <Text style={fonts.date}>{dataPadrao(forecasts[0].Date)}</Text>
+          <Text style={fonts.dateName}>{diaSemana(forecasts[0].Date)}</Text>
         </View>
 
         <View style={styles.phrase}>
@@ -141,17 +142,21 @@ const fonts = StyleSheet.create({
     fontWeight: 'bold',
     color: '#006060',
   },
+  temp: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    margin: 5,
+  },
   tempMax: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#eb4d4b',
-    margin: 5
+    
   },
   tempMin: {
-    fontSize: 27,
+    fontSize: 19,
     fontWeight: 'bold',
     color: '#00b8d4',
-    margin: 5
   },
   date: {
     fontSize: 22,
