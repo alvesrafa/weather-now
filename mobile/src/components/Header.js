@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { View, Text, StyleSheet, Switch } from 'react-native';
 import Constants from 'expo-constants';
 import styled from 'styled-components/native'
-export default function Header({checked, setChecked, colors}){
+export default function Header({checked, setChecked}){
   function handleChange(){
     checked ? setChecked(false) : setChecked(true)
     
@@ -36,7 +36,7 @@ export const Title = styled.Text`
 `
 export const HeaderView = styled.View`
   padding: 10px;
-  background-color: ${props => props.theme.background};
+  background-color: ${props => props.theme.tertiary};
   justify-content: space-between;
   align-items: center;
   flex-direction: row;

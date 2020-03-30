@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { diaSemana, dataPadrao, FtoC } from '../assets/functions'
 import DailyForecast from './DailyForecast';
+
 import styled from 'styled-components';
+
+import LottieView from 'lottie-react-native';
+import loadingIcon from '../assets/loading.json';
 
 import api from '../services/api';
 import { KEY } from '../../env.json';
@@ -66,7 +69,11 @@ export default function Weather({city}){
 
       </WeatherBlock>
       :
-      <Text>Nada ainda</Text>
+      <LottieView
+        resizeMode="contain"
+        source={loadingIcon} 
+        autoPlay loop
+      />
     }
     </>
   )
@@ -129,6 +136,7 @@ export const Forecasts = styled.View`
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+  
 `
 export const TextLocale = styled.Text`
 font-size: 25px;

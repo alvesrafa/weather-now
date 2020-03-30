@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import api from '../services/googleApi';
 import { GOOGLE_KEY } from '../../env.json';
@@ -52,11 +51,12 @@ export default function SearchInput({search}){
   `
   export const SearchInputItem = styled.TextInput`
     width: 80%;
-    background-color: ${props => props.theme.primary};
+    background-color: ${props => props.theme.background};
     height: 45px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     padding: 5px;
+    color: ${props => props.theme.font};
   `
   export const SearchItens = styled.View`
     width: 100%;
@@ -68,7 +68,7 @@ export default function SearchInput({search}){
     width: 20%;
     justify-content: center;
     align-items: center;
-    background-color: ${props => props.theme.primary};
+    background-color: ${props => props.theme.background};
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   `
