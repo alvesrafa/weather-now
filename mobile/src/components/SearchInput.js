@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Keyboard, Alert } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import api from '../services/googleApi';
 import { GOOGLE_KEY } from '../../env.json';
@@ -9,6 +10,7 @@ export default function SearchInput({search}){
   const [address, setAddress] = useState('');
 
   async function handleSearch(){
+    Keyboard.dismiss();
     let config = {
       params: {
         key: GOOGLE_KEY,
@@ -22,7 +24,7 @@ export default function SearchInput({search}){
         let address_google = address1 + ', ' + address2
         console.log(address_google)
         search(address_google)
-    }).catch(e => console.log(e))
+    }).catch(e => Alert.alert('Owh! "/', 'Desculpe, mas não achei nenhum lugar com esse nome.'))
       
   }
   return (

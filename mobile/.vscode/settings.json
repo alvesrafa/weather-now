@@ -1,0 +1,10 @@
+{
+  "editor.fontSize": 16,
+  "editor.suggestFontSize": 18,
+  "debug.console.fontSize": 16,
+  "debug.console.lineHeight": 24,
+  "markdown.preview.fontSize": 16,
+  "terminal.integrated.fontSize": 16,
+  "editor.cursorBlinking": "smooth",
+  "editor.lineHeight": 24
+}

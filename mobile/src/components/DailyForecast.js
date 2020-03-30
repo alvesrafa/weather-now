@@ -19,7 +19,12 @@ export const Daily = styled.View`
   align-items: center;
   width: 23%;
   padding: 7px;
-  border-radius: 3px;
+  border-radius: 8px;
+  border-color: ${props => props.theme.shadow};
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+  border-top-width: 0.5px;
+  border-left-width: 0.5px;
 `
 
 export const DateDaily = styled.Text`

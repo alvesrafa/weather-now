@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Alert } from 'react-native'
 import { diaSemana, dataPadrao, FtoC } from '../assets/functions'
 import DailyForecast from './DailyForecast';
 
@@ -25,10 +26,10 @@ export default function Weather({city}){
     api.get(`/forecasts/v1/daily/5day/${city.Key}`, config).then( response => {
       setForecasts(response.data.DailyForecasts)
       setHeadline(response.data.Headline)
-    })
+    }).catch(e => console.log(city))
     api.get(`/currentconditions/v1/${city.Key}`, config).then( response => {
       setConditions(response.data[0])
-    })
+    }).catch(e => console.log(e))
     
   }, [])
 

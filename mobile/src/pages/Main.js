@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, AsyncStorage} from 'react-native';
+import { View, StyleSheet, Text, AsyncStorage, Alert} from 'react-native';
 import api from '../services/api';
 import { KEY } from '../../env.json';
 
@@ -26,19 +26,17 @@ export default function Main() {
   }
   async function getSearch() {
     try {
-      const value = await AsyncStorage.getItem('CITY');
+      const value = await AsyncStorage.getItem('CITA');
       if (value !== null) {
         setCity(JSON.parse(value))
-        console.log('pegou do local')
       } 
-      console.log('vazio')
     } catch (env) {
       console.log('Erro ao captar dados do localStorage')
     }
   };
 
   async function searchData(address){
-    if(address === '') return console.log('address vazio');
+    if(address === '') return Alert.alert('Endereço vazio!', 'Campo de endereço preenchido incorretamente.');
     let config = {
       params: {
         apikey: KEY,
@@ -46,9 +44,13 @@ export default function Main() {
         language: 'pt-BR',
       } 
     };
-    await api.get('/locations/v1/cities/search', config).then(response =>{
+    try {
+      const response = await api.get('/locations/v1/cities/search', config);
       setCity(response.data[0])
-    })
+    }catch (e) {
+      Alert.alert('Poxa, não encontrei esse lugar. "/', 'Erro no servidor, tente novamente mais tarde.');
+    }
+    
   }
   return (
     <View style={styles.container}>
@@ -57,7 +59,7 @@ export default function Main() {
         city ?
         <Weather city={city}/>
         :
-        <Text>asfasf</Text>
+        <Text>Main city vazia</Text>
       }
     </View>
   )
