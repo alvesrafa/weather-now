@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert } from 'react-native'
+import { Text } from 'react-native'
 import { diaSemana, dataPadrao, FtoC } from '../assets/functions'
 import DailyForecast from './DailyForecast';
 
@@ -17,6 +17,10 @@ export default function Weather({city}){
   const [headline, setHeadline] = useState('');
 
   useEffect(()=> {
+    setForecasts('');
+    setHeadline('');
+    setConditions('');
+
     let config = {
       params: {
         apikey: KEY,
@@ -26,10 +30,12 @@ export default function Weather({city}){
     api.get(`/forecasts/v1/daily/5day/${city.Key}`, config).then( response => {
       setForecasts(response.data.DailyForecasts)
       setHeadline(response.data.Headline)
-    }).catch(e => console.log(city))
+      console.log('ForeCast 5day ', response.data)
+    }).catch(e => Alert.alert('Erro na requisição forecast 5day'))
     api.get(`/currentconditions/v1/${city.Key}`, config).then( response => {
       setConditions(response.data[0])
-    }).catch(e => console.log(e))
+      console.log('Conditions ',response.data[0])
+    }).catch(e => Alert.alert('Erro na requisição do conditions'))
     
   }, [])
 
@@ -56,10 +62,14 @@ export default function Weather({city}){
         </Phrase>
 
         <Paragraph>
-          <TextParagraph>Chance de preciptação?</TextParagraph>
+          <TextParagraph>Chance de preciptação? <Text></Text> </TextParagraph>
           <TextParagraph>Intensidade?</TextParagraph>
           <TextParagraph>Tipo?</TextParagraph>
         </Paragraph>
+
+        <Phrase>
+          <TextPhrase>{headline.Text} </TextPhrase>
+        </Phrase>
 
         <Forecasts>
           {forecasts.filter((dia,id) => id !== 0).map((dia, id) => (

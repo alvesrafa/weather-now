@@ -37,6 +37,7 @@ export default function Main() {
 
   async function searchData(address){
     if(address === '') return Alert.alert('Endereço vazio!', 'Campo de endereço preenchido incorretamente.');
+    setCity('');
     let config = {
       params: {
         apikey: KEY,
