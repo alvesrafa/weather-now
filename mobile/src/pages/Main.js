@@ -42,12 +42,13 @@ export default function Main() {
       params: {
         apikey: KEY,
         q: address,
-        language: 'pt-BR',
+        language: 'en-US',
       } 
     };
     try {
       const response = await api.get('/locations/v1/cities/search', config);
-      setCity(response.data[0])
+      if(response.data.length != 0) setCity(response.data[0])
+      else throw 400;
     }catch (e) {
       Alert.alert('Poxa, não encontrei esse lugar. "/', 'Erro no servidor, tente novamente mais tarde.');
     }

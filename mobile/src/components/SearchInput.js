@@ -21,8 +21,7 @@ export default function SearchInput({search}){
       .then( response => {
         let address1 = response.data.results[0].address_components[0].long_name.replace(/[.]/g,'')
         let address2 = response.data.results[0].address_components.pop().long_name.replace(/[.]/g,'')
-        let address_google = address1 + ', ' + address2
-        console.log(address_google)
+        let address_google = address1 + ' ' + address2
         search(address_google)
     }).catch(e => Alert.alert('Owh! "/', 'Desculpe, mas não achei nenhum lugar com esse nome.'))
       

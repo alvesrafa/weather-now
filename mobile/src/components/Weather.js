@@ -67,9 +67,9 @@ export default function Weather({city}){
           <TextParagraph>Tipo?</TextParagraph>
         </Paragraph>
 
-        <Phrase>
-          <TextPhrase>{headline.Text} </TextPhrase>
-        </Phrase>
+        <Paragraph>
+          <TextParagraph>{headline.Text} </TextParagraph>
+        </Paragraph>
 
         <Forecasts>
           {forecasts.filter((dia,id) => id !== 0).map((dia, id) => (
