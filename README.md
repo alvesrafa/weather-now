@@ -19,7 +19,7 @@ Aplicação para verificação climática. Desenvolvido apenas o front-end consu
 
 ## 💭 <strong>Como functiona?</strong> <a name = "working"></a>
 
-Tanto a aplicação web quanto a mobile funcionam de forma bem simples, basta o usuario escrever no campo de busca o local que deseja verificar a temperaturae pronto! O software apresentará a temperatura do dia atual e dos proximos 4 dias!
+Tanto a aplicação web quanto a mobile funcionam de forma bem simples, basta o usuario escrever no campo de busca o local que deseja verificar a temperatura e pronto! O software apresentará a temperatura do dia atual e dos próximos 4 dias!
 
 ---
 ---
