@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native'
 import { diaSemana, dataPadrao, FtoC } from '../assets/functions'
 import DailyForecast from './DailyForecast';
-
 import styled from 'styled-components';
 
 import LottieView from 'lottie-react-native';
@@ -30,11 +28,9 @@ export default function Weather({city}){
     api.get(`/forecasts/v1/daily/5day/${city.Key}`, config).then( response => {
       setForecasts(response.data.DailyForecasts)
       setHeadline(response.data.Headline)
-      console.log('ForeCast 5day ', response.data)
     }).catch(e => Alert.alert('Erro na requisição forecast 5day'))
     api.get(`/currentconditions/v1/${city.Key}`, config).then( response => {
       setConditions(response.data[0])
-      console.log('Conditions ',response.data[0])
     }).catch(e => Alert.alert('Erro na requisição do conditions'))
     
   }, [])
@@ -60,12 +56,6 @@ export default function Weather({city}){
         <Phrase>
           <TextPhrase>{conditions.WeatherText}</TextPhrase>
         </Phrase>
-
-        <Paragraph>
-          <TextParagraph>Chance de preciptação? <Text></Text> </TextParagraph>
-          <TextParagraph>Intensidade?</TextParagraph>
-          <TextParagraph>Tipo?</TextParagraph>
-        </Paragraph>
 
         <Paragraph>
           <TextParagraph>{headline.Text} </TextParagraph>
@@ -134,6 +124,7 @@ export const Paragraph = styled.View`
   width: 100%;
   margin-bottom: 20px;
   border-radius: 3px;
+
 `
 export const Phrase = styled.View`
   background-color: ${props => props.theme.primary};

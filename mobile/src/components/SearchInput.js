@@ -19,10 +19,24 @@ export default function SearchInput({search}){
     }
     await api.get('maps/api/geocode/json', config)
       .then( response => {
-        let address1 = response.data.results[0].address_components[0].long_name.replace(/[.]/g,'')
-        let address2 = response.data.results[0].address_components.pop().long_name.replace(/[.]/g,'')
-        let address_google = address1 + ' ' + address2
-        search(address_google)
+        let array = [];
+        response.data.results[0].address_components.map((component, i) => {
+          if(i <= 3)
+            array.push(i === 0 ? component.long_name : component.short_name)
+        })
+        let novoArr = array.filter((este, i) =>{ //retirar valores duplicados
+          return array.indexOf(este) === i;
+        });
+        let string = novoArr.toString()
+        search(string)
+
+
+
+        // let address1 = response.data.results[0].address_components[0].long_name.replace(/[.]/g,'')
+        // let address2 = response.data.results[0].address_components.pop().long_name.replace(/[.]/g,'')
+        // let address_google = address1 + ' ' + address2
+          
+        //search(response.data.results[0].formatted_address)
     }).catch(e => Alert.alert('Owh! "/', 'Desculpe, mas não achei nenhum lugar com esse nome.'))
       
   }
