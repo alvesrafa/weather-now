@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Aplicação para verificação climática utilizando a API do AccuWeather. ",
+    "githubUrl": "https://github.com/alvesrafa/weather-now/tree/master/mobile"
   }
 }
