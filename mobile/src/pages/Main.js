@@ -26,7 +26,7 @@ export default function Main() {
   }
   async function getSearch() {
     try {
-      const value = await AsyncStorage.getItem('CITA');
+      const value = await AsyncStorage.getItem('CITY');
       if (value !== null) {
         setCity(JSON.parse(value))
       } 
@@ -61,7 +61,9 @@ export default function Main() {
         city ?
         <Weather city={city}/>
         :
-        <Text>Main city vazia</Text>
+        <View style={{flex:1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#cce6ff'}}>
+          <Text style={{fontSize: 18}}>Aplicação teste - Ainda em desenvolvimento</Text>
+        </View>
       }
     </View>
   )

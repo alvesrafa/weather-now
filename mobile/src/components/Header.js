@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, Switch } from 'react-native';
 import Constants from 'expo-constants';
-import styled from 'styled-components/native'
+import styled from 'styled-components/native';
+
 export default function Header({checked, setChecked}){
   function handleChange(){
     checked ? setChecked(false) : setChecked(true)
@@ -16,7 +17,7 @@ export default function Header({checked, setChecked}){
         <Switch 
           onValueChange={handleChange}
           value={checked}
-          thumbColor={'#A0CECB'}
+          thumbColor={'#4da6ff'}
           trackColor={{true: '#FFF', false: '#000'}}
         />
       </HeaderView>
@@ -25,7 +26,7 @@ export default function Header({checked, setChecked}){
 }
 const styles = StyleSheet.create({
   statusBar: {
-    backgroundColor: '#AAB2BD',
+    backgroundColor: '#0080ff',
     height: Constants.statusBarHeight,
   },
 })

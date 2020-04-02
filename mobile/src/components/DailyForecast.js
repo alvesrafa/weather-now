@@ -7,14 +7,14 @@ export default function dailyforecast({dia}){
     <Daily>
       <DateDaily>{dataPadrao(dia.Date)}</DateDaily>
       <DateDaily>{diaSemanaMenor(dia.Date)}</DateDaily>
-      <DailyMax>{FtoC(dia.Temperature.Maximum.Value)} F</DailyMax>
-      <DailyMin>{FtoC(dia.Temperature.Minimum.Value)} F</DailyMin>
+      <DailyMax>{FtoC(dia.Temperature.Maximum.Value)} ºC</DailyMax>
+      <DailyMin>{FtoC(dia.Temperature.Minimum.Value)} ºC</DailyMin>
     </Daily>
   )
 }
 
 export const Daily = styled.View`
-  background-color: ${props => props.theme.background};
+  background-color: ${props => props.theme.secondary};
   justify-content: center;
   align-items: center;
   width: 23%;

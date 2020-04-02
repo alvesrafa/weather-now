@@ -1,8 +1,8 @@
 export default {
-  primary: '#F5F7FA',
-  secondary: '#E6E9ED',
-  tertiary:'#AAB2BD',
-  background: '#CCD1D9',
-  font: '#323133',
-  shadow: '#9E9E9E'
+  primary: '#0066cc',
+  secondary: '#0059b3',
+  tertiary:'#0066cc',
+  background: '#f2f1ef',
+  font: '#e6f2ff',
+  shadow: '#003366'
 }
