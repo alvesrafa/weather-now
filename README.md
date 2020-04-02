@@ -8,6 +8,7 @@
 
 ---
 <div align="center"> 
+  
 ## 🧐 Sobre <a name = "about"></a>
 
 Aplicação para verificação climática. Desenvolvido apenas o front-end consumindo a API pública da empresa AccuWeather. 
