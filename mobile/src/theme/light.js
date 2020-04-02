@@ -4,5 +4,6 @@ export default {
   tertiary:'#0066cc',
   background: '#f2f1ef',
   font: '#e6f2ff',
-  shadow: '#003366'
+  shadow: '#003366',
+  fontInput: '#222',
 }

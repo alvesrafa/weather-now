@@ -14,12 +14,26 @@ export default function SearchInput({cityKey}){
     }
     await api.get('maps/api/geocode/json', config)
     .then( response => {
+
+      let array = [];
+      response.data.results[0].address_components.map((component, i) => {
+        if(i <= 3)
+          array.push(i === 0 ? component.long_name : component.short_name)
+      })
+      let novoArr = array.filter((este, i) =>{ //retirar valores duplicados
+        return array.indexOf(este) === i;
+      });
+      let string = novoArr.toString()
+      cityKey(string)
+
+
+
       // response.data.results[0].formatted_address;
-      console.log(response.data)
-      let address1 = response.data.results[0].address_components[0].long_name.replace(/[.]/g,'')
-      let address2 = response.data.results[0].address_components.pop().long_name.replace(/[.]/g,'')
-      let address_google = address1 + ', ' + address2
-      cityKey(address_google)
+      // console.log(response.data)
+      // let address1 = response.data.results[0].address_components[0].long_name.replace(/[.]/g,'')
+      // let address2 = response.data.results[0].address_components.pop().long_name.replace(/[.]/g,'')
+      // let address_google = address1 + ', ' + address2
+      // cityKey(address_google)
     }).catch(e => console.log(e))
   }
 

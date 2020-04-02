@@ -71,7 +71,7 @@ export default function SearchInput({search}){
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     padding: 5px;
-    color: ${props => props.theme.font};
+    color: ${props => props.theme.fontInput};
   `
   export const SearchItens = styled.View`
     width: 100%;
