@@ -1,7 +1,12 @@
 <p align="center">
   <a href="" rel="noopener">
  <img width=200px height=200px src="https://i.imgur.com/HBdnoB3.png" alt="WeatherNow Logo"></a>
-</p>
+  
+  <div align="center">
+ 
+   [![MadeBy](https://img.shields.io/badge/created%20by-raufa-red)](https://github.com/alvesrafa)
+   </div>
+  </p>
 
 <h3 align="center">Weather Now</h3>
 
