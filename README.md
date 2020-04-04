@@ -19,7 +19,7 @@
 Aplicação para verificação climática. Desenvolvido apenas o front-end consumindo a API pública da empresa AccuWeather. 
 ## Demo 🎥 Web / Mobile  <a name = "demo"></a>
 
-![Working](https://im3.ezgif.com/tmp/ezgif-3-260d0d1efc52.gif)
+![Working](https://media.giphy.com/media/QZmx4ZQfA3Fdszb1Fe/giphy.gif)
 </div>
 
 ## 💭 <strong>Como functiona?</strong> <a name = "working"></a>
