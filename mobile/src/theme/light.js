@@ -3,7 +3,7 @@ export default {
   secondary: '#0059b3',
   tertiary:'#0066cc',
   background: '#f2f1ef',
-  font: '#e6f2ff',
+  font: '#000f2f',
   shadow: '#003366',
   fontInput: '#222',
 }

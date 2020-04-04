@@ -102,7 +102,6 @@ export const LocaleTemperature = styled.View`
   background-color: ${props => props.theme.primary};
   padding: 15px;
   width: 48%;
-  height: 25%;
   margin-bottom: 20px;
   justify-content: center;
   align-items: center;
@@ -112,7 +111,6 @@ export const Dates = styled.View`
   background-color: ${props => props.theme.primary};
   padding: 15px;
   width: 48%;
-  height: 25%;
   margin-bottom: 20px;
   justify-content: center;
   align-items: center;
