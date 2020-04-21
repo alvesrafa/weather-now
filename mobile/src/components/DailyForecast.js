@@ -41,5 +41,5 @@ export const DailyMax = styled.Text`
 export const DailyMin = styled.Text`
   font-size: 18px;
   font-weight: bold;
-  color: #00b8d4;
+  color: #006064;
 `

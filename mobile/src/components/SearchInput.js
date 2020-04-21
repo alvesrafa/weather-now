@@ -10,7 +10,9 @@ export default function SearchInput({search}){
   const [address, setAddress] = useState('');
 
   async function handleSearch(){
+    if(!address) return;
     Keyboard.dismiss();
+    
     let config = {
       params: {
         key: GOOGLE_KEY,
@@ -50,7 +52,7 @@ export default function SearchInput({search}){
         onSubmitEditing={handleSearch}
       />
       <SearchButton onPress={handleSearch}>
-        <FontAwesome name="search" size={32} color="#AAA" />
+        <FontAwesome name="search" size={26} color="#AAA" />
       </SearchButton>
     </SearchBlock>
   )
@@ -61,17 +63,18 @@ export default function SearchInput({search}){
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    padding: 5px;
-    background-color: ${props => props.theme.tertiary};
+    padding: 14px 5px;
+    background-color: ${props => props.theme.background};
+
   `
   export const SearchInputItem = styled.TextInput`
     width: 80%;
-    background-color: ${props => props.theme.background};
-    height: 45px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    background-color: ${props => props.theme.primary};
+    height: 50px;
+    border-radius: 7px;
     padding: 5px;
-    color: ${props => props.theme.fontInput};
+    color: ${props => props.theme.font};
+    font-size: 22px;
   `
   export const SearchItens = styled.View`
     width: 100%;
@@ -79,13 +82,12 @@ export default function SearchInput({search}){
   `
   export const SearchButton = styled.TouchableOpacity`
     padding: 10px;
-    height: 45px;
-    width: 20%;
+    height: 55px;
+    width: 55px;
     justify-content: center;
     align-items: center;
-    background-color: ${props => props.theme.background};
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    background-color: ${props => props.theme.primary};
+    border-radius: 100px;
   `
     
 

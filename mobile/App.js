@@ -3,6 +3,7 @@ import {AsyncStorage} from 'react-native'
 import Main from './src/pages/Main';
 import Header from './src/components/Header';
 import { ThemeProvider } from 'styled-components';
+import styled from 'styled-components/native';
 import light from './src/theme/light';
 import dark from './src/theme/dark';
 
@@ -37,8 +38,15 @@ export default function App() {
 
   return (
     <ThemeProvider theme={checked ? light : dark}>
-      <Header checked={checked} setChecked={setChecked}/>
-      <Main/>
+      <Container>
+        <Header checked={checked} setChecked={setChecked}/>
+        <Main/>
+      </Container>
     </ThemeProvider>
   );
 }
+const Container = styled.View`
+  background-color: ${props => props.theme.background};
+  flex-direction: column;
+  flex:1;
+`

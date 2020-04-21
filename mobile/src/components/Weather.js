@@ -92,14 +92,14 @@ export const WeatherBlock = styled.View`
 `
 
 export const LocaleName = styled.View`
-  background-color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.secondary};
   padding: 15px;
   width: 100%;
   margin-bottom: 20px;
   border-radius: 3px;
 `
 export const LocaleTemperature = styled.View`
-  background-color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.secondary};
   padding: 15px;
   width: 48%;
   margin-bottom: 20px;
@@ -108,7 +108,7 @@ export const LocaleTemperature = styled.View`
   border-radius: 3px;
 `
 export const Dates = styled.View`
-  background-color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.secondary};
   padding: 15px;
   width: 48%;
   margin-bottom: 20px;
@@ -117,7 +117,7 @@ export const Dates = styled.View`
   border-radius: 3px;
 `
 export const Paragraph = styled.View`
-  background-color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.secondary};
   padding: 15px;
   width: 100%;
   margin-bottom: 20px;
@@ -125,7 +125,7 @@ export const Paragraph = styled.View`
 
 `
 export const Phrase = styled.View`
-  background-color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.secondary};
   padding: 15px;
   width: 100%;
   margin-bottom: 20px;
@@ -158,7 +158,7 @@ color: #eb4d4b;
 export const TextTempMin = styled.Text`
 font-size: 19px;
 font-weight: bold;
-color: #00b8d4;
+color: #006064;
 `
 export const TextDate = styled.Text`
 font-size: 22px;

@@ -1,17 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, AsyncStorage, Alert} from 'react-native';
+import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
 import api from '../services/api';
 import { KEY } from '../../env.json';
 
 import Weather from '../components/Weather';
 import SearchInput from '../components/SearchInput';
-
+import styled from 'styled-components/native';
 
 export default function Main() {
   const [city, setCity] = useState('')
 
+  async function loadLocation() {
+    const { granted } = await requestPermissionsAsync()
+
+    if(granted) {
+      const { coords } = await getCurrentPositionAsync({
+        enableHighAccuracy: true,
+      })
+      const { latitude, longitude } = coords;
+      console.log(latitude, longitude)
+    }
+  }
   useEffect(()=>{
     if(city === '') getSearch();
+
+    loadLocation()
       
   },[])
   useEffect(()=>{
@@ -55,26 +69,21 @@ export default function Main() {
     
   }
   return (
-    <View style={styles.container}>
+    <Container>
       <SearchInput search={searchData}/>
       {
         city ?
         <Weather city={city}/>
         :
-        <View style={{flex:1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#cce6ff'}}>
-          <Text style={{fontSize: 18}}>Aplicação teste - Ainda em desenvolvimento</Text>
+        <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={{fontSize: 18}}>Aplicação teste - Realize sua busca no campo acima.</Text>
         </View>
       }
-    </View>
+    </Container>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFF',
-  },
-  
-  
-
-});
+const Container = styled.View`
+  background-color: ${props => props.theme.background};
+  flex:1;
+`

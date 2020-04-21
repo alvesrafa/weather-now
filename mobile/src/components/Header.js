@@ -37,7 +37,6 @@ export const Title = styled.Text`
 `
 export const HeaderView = styled.View`
   padding: 10px;
-  background-color: ${props => props.theme.tertiary};
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
